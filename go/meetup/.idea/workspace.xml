@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="cdb791be-7111-4dce-a8a7-9d8cc88c5d0c" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GOROOT" path="/usr/lib/go" />
+  <component name="GoLibraries">
+    <option name="indexEntireGoPath" value="false" />
+  </component>
+  <component name="ProjectId" id="1X8NYdpSjUy6Co05EWxgMSohON9" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+  </component>
+  <component name="RecentsManager">
+    <key name="GoMoveDeclarationDialog.RECENT_KEY">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="TestDay in meetup" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="meetup" />
+      <working_directory value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="meetup" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestDay$" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Test.TestDay in meetup" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>true</integration-enabled>
+    <proxy>direct</proxy>
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1328" height="195" key="GridCell.Tab.0.bottom" timestamp="1580506692639">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1328" height="195" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1580506692639" />
+    <state width="1328" height="195" key="GridCell.Tab.0.center" timestamp="1580506692638">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1328" height="195" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1580506692638" />
+    <state width="1328" height="195" key="GridCell.Tab.0.left" timestamp="1580506692637">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1328" height="195" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1580506692637" />
+    <state width="1328" height="195" key="GridCell.Tab.0.right" timestamp="1580506692638">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1328" height="195" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1580506692638" />
+    <state width="1328" height="241" key="GridCell.Tab.1.bottom" timestamp="1580504215470">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1328" height="241" key="GridCell.Tab.1.bottom/0.0.1366.768@0.0.1366.768" timestamp="1580504215470" />
+    <state width="1328" height="241" key="GridCell.Tab.1.center" timestamp="1580504215469">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1328" height="241" key="GridCell.Tab.1.center/0.0.1366.768@0.0.1366.768" timestamp="1580504215469" />
+    <state width="1328" height="241" key="GridCell.Tab.1.left" timestamp="1580504215469">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1328" height="241" key="GridCell.Tab.1.left/0.0.1366.768@0.0.1366.768" timestamp="1580504215469" />
+    <state width="1328" height="241" key="GridCell.Tab.1.right" timestamp="1580504215470">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1328" height="241" key="GridCell.Tab.1.right/0.0.1366.768@0.0.1366.768" timestamp="1580504215470" />
+    <state x="303" y="106" key="SettingsEditor" timestamp="1580730681540">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="303" y="106" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1580730681540" />
+    <state x="473" y="145" key="com.goide.refactor.move.GoMoveDeclarationDialog" timestamp="1580474610186">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="473" y="145" key="com.goide.refactor.move.GoMoveDeclarationDialog/0.0.1366.768@0.0.1366.768" timestamp="1580474610186" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/meetup.go</url>
+          <line>20</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

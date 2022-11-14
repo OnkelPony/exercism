@@ -1,0 +1,16 @@
+=== RUN   TestGarden
+--- PASS: TestGarden (0.00s)
+=== RUN   TestNamesNotModified
+--- PASS: TestNamesNotModified (0.00s)
+=== RUN   TestTwoGardens
+--- PASS: TestTwoGardens (0.00s)
+goos: linux
+goarch: amd64
+pkg: are
+cpu: Intel(R) Core(TM) i7-3632QM CPU @ 2.20GHz
+BenchmarkNewGarden
+BenchmarkNewGarden-8       	  180681	      8143 ns/op	     879 B/op	      23 allocs/op
+BenchmarkGarden_Plants
+BenchmarkGarden_Plants-8   	   35712	     30157 ns/op	    6412 B/op	      37 allocs/op
+PASS
+ok  	are	2.965s
