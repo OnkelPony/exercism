@@ -1,0 +1,11 @@
+{
+    "makefile.compileCommandsPath": ".vscode/compile_commands.json",
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/home/gio/git/exercism/c/grains",
+            "binaryPath": "/home/gio/git/exercism/c/grains/tests.out",
+            "binaryArgs": []
+        }
+    ],
+    "sonarlint.pathToCompileCommands": "${workspaceFolder}/.vscode/compile_commands.json"
+}
