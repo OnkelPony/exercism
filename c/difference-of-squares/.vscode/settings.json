@@ -1,4 +1,5 @@
 {
     "makefile.compileCommandsPath": ".vscode/compile_commands.json",
+    "editor.mouseWheelZoom": true,
     "sonarlint.pathToCompileCommands": "${workspaceFolder}/.vscode/compile_commands.json"
 }

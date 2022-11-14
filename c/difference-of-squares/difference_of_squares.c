@@ -3,8 +3,15 @@
 unsigned int sum_of_squares(unsigned int number)
 {
 	unsigned int    result;
+	unsigned int	i;
 
-	result = number;
+	result = 0;
+	i = 0;
+	while (i <= number)
+	{
+		result += i * i;
+		i++;
+	}
 	return (result);
 }
 
