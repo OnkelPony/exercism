@@ -2,31 +2,20 @@
 
 unsigned int sum_of_squares(unsigned int number)
 {
-	unsigned int    result;
-	unsigned int	i;
-
-	result = 0;
-	i = 0;
-	while (i <= number)
-	{
-		result += i * i;
-		i++;
-	}
-	return (result);
+	return ((number * (number + 1) * (2 * number + 1)) / 6);
 }
 
 unsigned int square_of_sum(unsigned int number)
 {
 	unsigned int    result;
-
-    result = number;
-    return (result);
+	result = number * (number + 1) / 2;
+	return (result * result);
 }
 
 unsigned int difference_of_squares(unsigned int number)
 {
 	unsigned int    result;
 
-    result = number;
-    return (result);
+	result = square_of_sum(number) - sum_of_squares(number);
+	return (result);
 }
