@@ -11,7 +11,7 @@
 
 typedef struct
 {
-	uint8_t grade;
+	int grade;
 	char name[MAX_NAME_LENGTH];
 } student_t;
 
