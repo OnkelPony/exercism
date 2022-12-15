@@ -7,9 +7,16 @@
 # Unignore source code files
 !**/*.c
 !**/*.h
+!**/*.go
 
 # Unignore other usefull stuff
 !.gitignore
-!**/.vscode/
+#!**/.vscode/
 !**/.vscode/*
+!**/.idea/
+!**/.idea/*
+!**/.exercism/
+!**/.exercism/*
 !**/*.csv
+!**/*.md
+!**/*.json

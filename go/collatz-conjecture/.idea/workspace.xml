@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="686471a9-e4d6-4185-9fae-6ce2caa5d8c9" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GOROOT" path="/usr/lib/go" />
+  <component name="ProjectId" id="1UZhWC88HNGGoE51pUfjOPFdMf1" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="configurable.Global.GOPATH.is.expanded" value="true" />
+    <property name="configurable.Module.GOPATH.is.expanded" value="true" />
+    <property name="configurable.Project.GOPATH.is.expanded" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="686471a9-e4d6-4185-9fae-6ce2caa5d8c9" name="Default Changelist" comment="" />
+      <created>1576533206013</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1576533206013</updated>
+      <workItem from="1576533207568" duration="80000" />
+      <workItem from="1576533306585" duration="679000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>true</integration-enabled>
+    <proxy>direct</proxy>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="383" y="127" key="#GOPATH" timestamp="1576533352204">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="383" y="127" key="#GOPATH/0.0.1366.768@0.0.1366.768" timestamp="1576533352204" />
+    <state x="374" y="125" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1576533272089">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="374" y="125" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.768@0.0.1366.768" timestamp="1576533272089" />
+    <state x="524" y="199" key="FileChooserDialogImpl" timestamp="1575572420607">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="524" y="199" key="FileChooserDialogImpl/0.0.1366.768@0.0.1366.768" timestamp="1575572420607" />
+    <state x="308" y="107" key="SettingsEditor" timestamp="1575570094898">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="308" y="107" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1575570094898" />
+    <state x="430" y="250" key="com.intellij.ide.util.TipDialog" timestamp="1576533330900">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="430" y="250" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1576533330900" />
+  </component>
+</project>
