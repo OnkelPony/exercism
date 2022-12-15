@@ -95,7 +95,7 @@ static void test_multiple_students_in_same_grade_are_added_to_roster(void)
 
 static void test_cannot_add_student_to_same_grade_more_than_once(void)
 {
-	TEST_IGNORE();
+	// TEST_IGNORE();
 	roster_t actual;
 	init_roster(&actual);
 
@@ -107,7 +107,7 @@ static void test_cannot_add_student_to_same_grade_more_than_once(void)
 
 static void test_student_not_added_to_same_grade_in_roster_more_than_once(void)
 {
-	TEST_IGNORE();
+	// TEST_IGNORE();
 	roster_t expected = {3,
 								{(student_t){2, "Blair"}, (student_t){2, "James"},
 								 (student_t){2, "Paul"}}};
@@ -124,7 +124,7 @@ static void test_student_not_added_to_same_grade_in_roster_more_than_once(void)
 
 static void test_adding_students_in_multiple_grades(void)
 {
-	TEST_IGNORE();
+	// TEST_IGNORE();
 	roster_t actual;
 	init_roster(&actual);
 
@@ -134,7 +134,7 @@ static void test_adding_students_in_multiple_grades(void)
 
 static void test_students_in_multiple_grades_are_added_to_roster(void)
 {
-	TEST_IGNORE();
+	// TEST_IGNORE();
 	roster_t expected = {
 		 2,
 		 {(student_t){3, "Chelsea"}, (student_t){7, "Logan"}},
@@ -150,7 +150,7 @@ static void test_students_in_multiple_grades_are_added_to_roster(void)
 
 static void test_cannot_add_same_student_to_multiple_grades_in_roster(void)
 {
-	TEST_IGNORE();
+	// TEST_IGNORE();
 	roster_t actual;
 	init_roster(&actual);
 
@@ -162,7 +162,7 @@ static void test_cannot_add_same_student_to_multiple_grades_in_roster(void)
 
 static void test_student_not_added_to_multiple_grades_in_roster(void)
 {
-	TEST_IGNORE();
+	// TEST_IGNORE();
 	roster_t expected = {3,
 								{(student_t){2, "Blair"}, (student_t){2, "James"},
 								 (student_t){3, "Paul"}}};
@@ -179,7 +179,7 @@ static void test_student_not_added_to_multiple_grades_in_roster(void)
 
 static void test_students_are_sorted_by_grades_in_roster(void)
 {
-	TEST_IGNORE();
+	// TEST_IGNORE();
 	roster_t expected = {3,
 								{(student_t){1, "Anna"}, (student_t){2, "Peter"},
 								 (student_t){3, "Jim"}}};

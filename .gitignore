@@ -1,0 +1,15 @@
+# Ignore all
+*
+
+# Unignore directories
+!*/
+
+# Unignore source code files
+!**/*.c
+!**/*.h
+
+# Unignore other usefull stuff
+!.gitignore
+!**/.vscode/
+!**/.vscode/*
+!**/*.csv
