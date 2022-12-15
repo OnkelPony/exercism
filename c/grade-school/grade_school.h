@@ -22,6 +22,6 @@ typedef struct
 } roster_t;
 
 void init_roster(roster_t *roster);
-bool add_student(roster_t *roster, char *name, int grade);
-roster_t get_grade(roster_t *roster, int grade);
+bool add_student(roster_t *roster, const char *name, int grade);
+roster_t get_grade(const roster_t *roster, int grade);
 #endif
