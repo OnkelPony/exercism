@@ -1,0 +1,12 @@
+[
+    {
+        "command": "cc -std=c99 -g -Wall -Wextra -pedantic -Werror -Wmissing-declarations -DUNITY_SUPPORT_64 -DUNITY_OUTPUT_COLOR test-framework/unity.c ./*.c -o tests.out -lm",
+        "directory": "/home/gio/git/exercism/c/binary-search",
+        "file": "/home/gio/git/exercism/c/binary-search/test-framework/unity.c"
+    },
+    {
+        "command": "cc -std=c99 -g -Wall -Wextra -pedantic -Werror -Wmissing-declarations -DUNITY_SUPPORT_64 -DUNITY_OUTPUT_COLOR test-framework/unity.c ./*.c -o tests.out -lm",
+        "directory": "/home/gio/git/exercism/c/binary-search",
+        "file": "/home/gio/git/exercism/c/binary-search/*.c"
+    }
+]
