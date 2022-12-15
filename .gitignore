@@ -13,10 +13,10 @@
 !.gitignore
 #!**/.vscode/
 !**/.vscode/*
-!**/.idea/
+#!**/.idea/
 !**/.idea/*
-!**/.exercism/
+#!**/.exercism/
 !**/.exercism/*
 !**/*.csv
 !**/*.md
-!**/*.json
+#!**/*.json
