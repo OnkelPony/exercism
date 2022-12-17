@@ -2,9 +2,9 @@
 
 const int *binary_search(int value, const int *arr, size_t length)
 {
-	int i;
-	int lower;
-	int upper;
+	unsigned long i;
+	unsigned long lower;
+	unsigned long upper;
 
 	if (length == 0)
 	{
@@ -19,11 +19,19 @@ const int *binary_search(int value, const int *arr, size_t length)
 		{
 			lower = i;
 			i = upper - (upper - lower) / 2;
+			if (i == upper && arr[i] != value)
+			{
+				return (NULL);
+			}
 		}
 		else if (value < arr[i])
 		{
 			upper = i;
 			i = lower + (upper - lower) / 2;
+			if (i == lower && arr[i] != value)
+			{
+				return (NULL);
+			}
 		}
 		else
 		{
