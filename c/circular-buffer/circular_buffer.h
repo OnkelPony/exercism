@@ -2,12 +2,14 @@
 #define CIRCULAR_BUFFER_H
 #include <stdint.h>
 #include <stddef.h>
+#define ARRAY_LENGTH(A) (sizeof(A) / sizeof(A[0]))
 
 typedef int buffer_value_t;
 typedef struct circular_buffer_t
 {
 	size_t capacity;
-	
+	buffer_value_t values[];
+
 } circular_buffer_t;
 int16_t read(circular_buffer_t *buffer, buffer_value_t *read_value);
 circular_buffer_t *new_circular_buffer(size_t capacity);
