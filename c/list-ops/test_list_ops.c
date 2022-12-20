@@ -265,7 +265,6 @@ static void test_foldl_empty_list(void)
 static void
 test_foldl_direction_independent_function_applied_to_non_empty_list(void)
 {
-   TEST_IGNORE();
    list = new_list(4, (list_element_t[]){ 1, 2, 3, 4 });
    list_element_t initial = 5;
    list_element_t expected = 15;
@@ -279,7 +278,6 @@ test_foldl_direction_independent_function_applied_to_non_empty_list(void)
 static void
 test_foldl_direction_dependent_function_applied_to_non_empty_list(void)
 {
-   TEST_IGNORE();
    list = new_list(2, (list_element_t[]){ 2, 5 });
    list_element_t initial = 5;
    list_element_t expected = 0;
@@ -292,7 +290,6 @@ test_foldl_direction_dependent_function_applied_to_non_empty_list(void)
 
 static void test_foldr_empty_list(void)
 {
-   TEST_IGNORE();
    list = new_list(0, NULL);
    list_element_t initial = 2;
    list_element_t expected = 2;
@@ -306,7 +303,6 @@ static void test_foldr_empty_list(void)
 static void
 test_foldr_direction_independent_function_applied_to_non_empty_list(void)
 {
-   TEST_IGNORE();
    list = new_list(4, (list_element_t[]){ 1, 2, 3, 4 });
    list_element_t initial = 5;
    list_element_t expected = 15;
@@ -320,7 +316,6 @@ test_foldr_direction_independent_function_applied_to_non_empty_list(void)
 static void
 test_foldr_direction_dependent_function_applied_to_non_empty_list(void)
 {
-   TEST_IGNORE();
    list = new_list(2, (list_element_t[]){ 2, 5 });
    list_element_t initial = 5;
    list_element_t expected = 2;
@@ -333,7 +328,6 @@ test_foldr_direction_dependent_function_applied_to_non_empty_list(void)
 
 static void test_reverse_empty_list(void)
 {
-   TEST_IGNORE();
    list = new_list(0, NULL);
 
    actual = reverse_list(list);
@@ -345,7 +339,6 @@ static void test_reverse_empty_list(void)
 
 static void test_reverse_non_empty_list(void)
 {
-   TEST_IGNORE();
    list = new_list(4, (list_element_t[]){ 1, 3, 5, 7 });
    size_t expected_length = 4;
    list_element_t expected_elements[] = { 7, 5, 3, 1 };

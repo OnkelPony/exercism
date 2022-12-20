@@ -90,8 +90,41 @@ list_element_t foldl_list(list_t *list, list_element_t initial,
 	i = 0;
 	while (i < list->length)
 	{
-		result = foldl(list->elements[i], initial);
+		result = foldl(list->elements[i], result);
 		i++;
 	}
 	return (result);
+}
+
+list_element_t foldr_list(list_t *list, list_element_t initial,
+						  list_element_t (*foldr)(list_element_t,
+												  list_element_t))
+{
+	list_element_t result;
+	unsigned int i;
+
+	result = initial;
+	i = 0;
+	while (i < list->length)
+	{
+		result = foldr(list->elements[list->length - 1 - i], result);
+		i++;
+	}
+	return (result);
+}
+
+list_t *reverse_list(list_t *list)
+{
+	list_t *p_list;
+	unsigned int i;
+
+	p_list = malloc(sizeof(*p_list) + list->length * sizeof(p_list->elements[0]));
+	p_list->length = list->length;
+	i = 0;
+	while (i < list->length)
+	{
+		p_list->elements[i] = list->elements[list->length - 1 -i];
+		i++;
+	}
+	return (p_list);
 }
