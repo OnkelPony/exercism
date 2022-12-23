@@ -2,6 +2,9 @@
 #define CIRCULAR_BUFFER_H
 #include <stdint.h>
 #include <stddef.h>
+#include <stdlib.h>
+#include <errno.h>
+#include <stdbool.h>
 #define ARRAY_LENGTH(A) (sizeof(A) / sizeof(A[0]))
 
 typedef int buffer_value_t;
@@ -20,4 +23,6 @@ void delete_buffer(circular_buffer_t *buffer);
 void clear_buffer(circular_buffer_t *buffer);
 int16_t write(circular_buffer_t *buffer, buffer_value_t value);
 int16_t overwrite(circular_buffer_t *buffer, buffer_value_t value);
+int16_t write_uni(circular_buffer_t *buffer, buffer_value_t value, bool writeover);
+
 #endif
