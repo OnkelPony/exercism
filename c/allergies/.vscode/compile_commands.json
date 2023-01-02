@@ -1,0 +1,12 @@
+[
+    {
+        "command": "cc -std=c99 -g -Wall -Wextra -pedantic -Werror -Wmissing-declarations -DUNITY_SUPPORT_64 -DUNITY_OUTPUT_COLOR test-framework/unity.c ./*.c -o tests.out -lm",
+        "directory": "/home/gio/git/exercism/c/allergies",
+        "file": "/home/gio/git/exercism/c/allergies/test-framework/unity.c"
+    },
+    {
+        "command": "cc -std=c99 -g -Wall -Wextra -pedantic -Werror -Wmissing-declarations -DUNITY_SUPPORT_64 -DUNITY_OUTPUT_COLOR test-framework/unity.c ./*.c -o tests.out -lm",
+        "directory": "/home/gio/git/exercism/c/allergies",
+        "file": "/home/gio/git/exercism/c/allergies/*.c"
+    }
+]
