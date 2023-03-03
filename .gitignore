@@ -8,17 +8,17 @@
 !**/*.c
 !**/*.h
 !**/*.go
+!**/*.js
 !**/*.mod
 !**/makefile
 
 # Unignore other usefull stuff
-!.gitignore
-#!**/.vscode/
+!**/.gitignore
+!**/.eslintrc
+!**/.npmrc
 !**/.vscode/*
-#!**/.idea/
 !**/.idea/*
-#!**/.exercism/
 !**/.exercism/*
 !**/*.csv
 !**/*.md
-#!**/*.json
+!**/*.json
