@@ -24,4 +24,4 @@
 !**/*.json
 
 # Explicitly ignore
-javascript/node_modules
+javascript/node_modules/**
