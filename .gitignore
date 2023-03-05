@@ -22,3 +22,6 @@
 !**/*.csv
 !**/*.md
 !**/*.json
+
+# Explicitly ignore
+javascript/node_modules
