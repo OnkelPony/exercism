@@ -10,7 +10,12 @@
  * @returns {Visitor} the visitor that was created
  */
 export function createVisitor(name, age, ticketId) {
-  throw new Error('Please implement the createVisitor function.');
+  let visitor = {
+    name: name,
+    age: age,
+    ticketId: ticketId,
+  }
+  return visitor;
 }
 
 /**
@@ -20,7 +25,8 @@ export function createVisitor(name, age, ticketId) {
  * @returns {Visitor} the visitor without a ticket
  */
 export function revokeTicket(visitor) {
-  throw new Error('Please implement the revokeTicket function.');
+  visitor.ticketId = null;
+  return visitor;
 }
 
 /**
@@ -31,7 +37,14 @@ export function revokeTicket(visitor) {
  * @returns {string} ticket status
  */
 export function ticketStatus(tickets, ticketId) {
-  throw new Error('Please implement the ticketStatus function.');
+  switch (tickets[ticketId]) {
+    case undefined:
+      return "unknown ticket id";
+    case null:
+      return "not sold";
+    default:
+      return "sold to " + tickets[ticketId];
+  }
 }
 
 /**
