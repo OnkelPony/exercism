@@ -5,6 +5,16 @@
 // implementing this exercise.
 
 /**
+ * Base price of a sign.
+ */
+export const BASE_PRICE = 20;
+
+/**
+ * Price of single letter, whitespace included.
+ */
+export const LETTER_PRICE = 2;
+
+/**
  * Build a sign that includes both of the parameters.
  *
  * @param {string} occasion
@@ -39,7 +49,8 @@ export function buildBirthdaySign(age) {
  */
 
 export function graduationFor(name, year) {
-  throw new Error('Implement the graduationForm function');
+  return `Congratulations ${name}!
+Class of ${year}`;
 }
 
 /**
@@ -53,5 +64,6 @@ export function graduationFor(name, year) {
  */
 
 export function costOf(sign, currency) {
-  throw new Error('Implement the costOf function');
+  let totalPrice = BASE_PRICE + sign.length * LETTER_PRICE;
+  return `Your sign costs ${totalPrice.toFixed(2)} ${currency}.`
 }
