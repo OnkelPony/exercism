@@ -57,10 +57,10 @@ export function preparationTime(layers, minutesPerLayer = 2) {
 export function quantities(layers) {
 	let noodlesAmount = 0;
 	let sauceAmount = 0;
-	for (let i = 0; i < layers.length; i++) {
-		if (layers[i] === "sauce") {
+	for (const element of layers) {
+		if (element === "sauce") {
 			sauceAmount += SAUCE_PER_LAYER;
-		} else if (layers[i] === "noodles") {
+		} else if (element === "noodles") {
 			noodlesAmount += NOODLES_PER_LAYER;
 		}
 	}
@@ -82,24 +82,15 @@ export function addSecretIngredient(friensList, myList) {
  * Scale the recipe.
  *
  * @typedef {Object} recipe
- * @property {number} noodles
- * @property {number} sauce
- * @property {number} mozarella
- * @property {number} meat
  *
  * @param {recipe} recipe
  * @param {number} portions
  * @return {recipe} scaled recipe
  */
 export function scaleRecipe(recipe, portions) {
-	let scaledNoodles = recipe.noodles / RECIPE_PORTIONS * portions;
-	let scaledSauce = recipe.sauce / RECIPE_PORTIONS * portions;
-	let scaledMozarella = recipe.mozarella / RECIPE_PORTIONS * portions;
-	let scaledMeat = recipe.meat / RECIPE_PORTIONS * portions;
-	return {
-		noodles: scaledNoodles,
-		sauce: scaledSauce,
-		mozarella: scaledMozarella,
-		meat: scaledMeat,
+	let scaledRecipe = {};
+	for (let ingredient in recipe) {
+		scaledRecipe[ingredient] = recipe[ingredient] / RECIPE_PORTIONS * portions;
 	}
+	return scaledRecipe;
 }
