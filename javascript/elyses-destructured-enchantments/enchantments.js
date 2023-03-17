@@ -9,7 +9,8 @@
  * @returns {Card} the first card in the deck
  */
 export function getFirstCard(deck) {
-  throw new Error('Implement the getFirstCard function');
+  const [first, last] = deck;
+  return first;
 }
 
 /**
@@ -20,7 +21,8 @@ export function getFirstCard(deck) {
  * @returns {Card} the second card in the deck
  */
 export function getSecondCard(deck) {
-  throw new Error('Implement the getSecondCard function');
+  const [first, second] = deck;
+  return second;
 }
 
 /**
@@ -31,7 +33,8 @@ export function getSecondCard(deck) {
  * @returns {Card[]} new deck with reordered cards
  */
 export function swapTopTwoCards(deck) {
-  throw new Error('Implement the swapTopTwoCards function');
+  const [first, second, third, fourth, fifth, sixth, severnt, eighth, nineth, tenth] = deck;
+  return [second, first, third, fourth, fifth, sixth, severnt, eighth, nineth, tenth];
 }
 
 /**
