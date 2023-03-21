@@ -18,7 +18,7 @@ export function isValidCommand(command) {
  * @returns {string} The message without the emojis encryption
  */
 export function removeEmoji(message) {
-  const emoji = new RegExp('emoji[0-9]+', 'g');
+  const emoji = new RegExp(/emoji\d+/, "g");
   return message.replace(emoji, "");
 }
 
@@ -29,8 +29,13 @@ export function removeEmoji(message) {
  * @returns {string} the Chatbot response to the phone Validation
  */
 export function checkPhoneNumber(number) {
-  throw new Error('Please implement the checkPhoneNumber function');
+  const phoneNumber = /\(\+\d{2}\) \d{3}-\d{3}-\d{3}/;
+  if (phoneNumber.test(number)) {
+    return "Thanks! You can now download me to your phone.";
+  }
+  return `Oops, it seems like I can't reach out to ${number}`;
 }
+
 
 /**
  * Given a certain response from the user, help the chatbot get only the URL.
@@ -39,7 +44,8 @@ export function checkPhoneNumber(number) {
  * @returns {string[] | null} all the possible URL's that the user may have answered
  */
 export function getURL(userInput) {
-  throw new Error('Please implement the userInput function');
+  const url = /\w+\.\w{2,}/gi;
+  return userInput.match(url);
 }
 
 /**
