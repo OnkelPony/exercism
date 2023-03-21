@@ -8,7 +8,7 @@
  */
 
 export function isValidCommand(command) {
-  throw new Error('Please implement the isValidCommand function');
+  return /^chatbot/i.test(command);
 }
 
 /**
@@ -18,7 +18,8 @@ export function isValidCommand(command) {
  * @returns {string} The message without the emojis encryption
  */
 export function removeEmoji(message) {
-  throw new Error('Please implement the removeEmoji function');
+  const emoji = new RegExp('emoji[0-9]+', 'g');
+  return message.replace(emoji, "");
 }
 
 /**
