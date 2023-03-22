@@ -55,5 +55,6 @@ export function getURL(userInput) {
  * @returns {string} Greeting from the chatbot
  */
 export function niceToMeetYou(fullName) {
-  throw new Error('Please implement the fullName function');
+  const regex = /(\w+)\, (\w+)/;
+  return fullName.replace(regex, "Nice to meet you, $2 $1");
 }
