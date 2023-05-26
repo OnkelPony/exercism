@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jmartinek\\git\\exercism\\csharp\\roll-the-die\\RollTheDie.csproj": {}
+    "c:\\Users\\jmartinek\\git\\exercism\\csharp\\elons-toys\\ElonsToys.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jmartinek\\git\\exercism\\csharp\\roll-the-die\\RollTheDie.csproj": {
+    "c:\\Users\\jmartinek\\git\\exercism\\csharp\\elons-toys\\ElonsToys.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jmartinek\\git\\exercism\\csharp\\roll-the-die\\RollTheDie.csproj",
-        "projectName": "RollTheDie",
-        "projectPath": "C:\\Users\\jmartinek\\git\\exercism\\csharp\\roll-the-die\\RollTheDie.csproj",
+        "projectUniqueName": "c:\\Users\\jmartinek\\git\\exercism\\csharp\\elons-toys\\ElonsToys.csproj",
+        "projectName": "ElonsToys",
+        "projectPath": "c:\\Users\\jmartinek\\git\\exercism\\csharp\\elons-toys\\ElonsToys.csproj",
         "packagesPath": "C:\\Users\\jmartinek\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jmartinek\\git\\exercism\\csharp\\roll-the-die\\obj\\",
+        "outputPath": "c:\\Users\\jmartinek\\git\\exercism\\csharp\\elons-toys\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jmartinek\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -47,10 +47,6 @@
               "version": "[16.8.3, )"
             },
             "xunit": {
-              "target": "Package",
-              "version": "[2.4.1, )"
-            },
-            "xunit.extensibility.core": {
               "target": "Package",
               "version": "[2.4.1, )"
             },
