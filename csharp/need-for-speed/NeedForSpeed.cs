@@ -2,36 +2,40 @@ using System;
 
 class RemoteControlCar
 {
-    private int _speed;
-    private int _batteryDrain;
-    private int _distanceDriven;
-    private int _batteryCharge;
+    public int _speed;
+    public int _batteryDrain;
+    public int _distanceDriven;
+    public int _batteryCharge;
 
     // TODO: define the constructor for the 'RemoteControlCar' class
     public RemoteControlCar(int speed, int batteryDrain)
     {
         _batteryDrain = batteryDrain;
         _speed = speed;
+        _batteryCharge = 100;
+        _distanceDriven = 0;
     }
     public bool BatteryDrained()
     {
-        throw new NotImplementedException("Please implement the RemoteControlCar.BatteryDrained() method");
+        return _batteryCharge < _batteryDrain;
     }
 
     public int DistanceDriven()
     {
-        throw new NotImplementedException("Please implement the RemoteControlCar.DistanceDriven() method");
+        return _distanceDriven;
     }
 
     public void Drive()
     {
+        if (_batteryCharge >= _batteryDrain) {
         _batteryCharge -= _batteryDrain;
         _distanceDriven += _speed;
+        }
     }
 
     public static RemoteControlCar Nitro()
     {
-        throw new NotImplementedException("Please implement the (static) RemoteControlCar.Nitro() method");
+        return new RemoteControlCar(50, 4);
     }
 }
 
@@ -46,6 +50,6 @@ class RaceTrack
     }
     public bool TryFinishTrack(RemoteControlCar car)
     {
-        throw new NotImplementedException("Please implement the RaceTrack.TryFinishTrack() method");
+        return (float)_distance / car._speed <= car._batteryCharge / car._batteryDrain;
     }
 }
