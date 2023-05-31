@@ -35,6 +35,6 @@ public static class TelemetryBuffer
 
 	public static long FromBuffer(byte[] buffer)
 	{
-		throw new NotImplementedException("Please implement the static TelemetryBuffer.FromBuffer() method");
+		return BitConverter.ToInt64(buffer, 1);
 	}
 }
