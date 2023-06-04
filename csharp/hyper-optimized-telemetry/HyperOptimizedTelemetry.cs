@@ -35,6 +35,12 @@ public static class TelemetryBuffer
 
 	public static long FromBuffer(byte[] buffer)
 	{
+		if (buffer[0] == 256 - 4)
+		{
+			byte[] cutBuffer = new byte[5];
+			Array.Copy(buffer, 0, cutBuffer, 0, 5);
+			return BitConverter.ToInt32(cutBuffer, 1);
+		}
 		return BitConverter.ToInt64(buffer, 1);
 	}
 }
