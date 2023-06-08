@@ -4,11 +4,6 @@ using System.Collections.Generic;
 public static class DialingCodes
 {
 	private static Dictionary<int, string> emptyCodes = new Dictionary<int, string>();
-	private static Dictionary<int, string> smallCodes = new Dictionary<int, string>{
-		{1, "United States of America"},
-		{55, "Brasil"},
-		{91, "India"}
-	};
 
 	public static Dictionary<int, string> GetEmptyDictionary()
 	{
@@ -17,7 +12,11 @@ public static class DialingCodes
 
 	public static Dictionary<int, string> GetExistingDictionary()
 	{
-		return smallCodes;
+		return new Dictionary<int, string>{
+		{1, "United States of America"},
+		{55, "Brazil"},
+		{91, "India"}
+	};
 	}
 
 	public static Dictionary<int, string> AddCountryToEmptyDictionary(int countryCode, string countryName)
@@ -55,17 +54,33 @@ public static class DialingCodes
 	public static Dictionary<int, string> UpdateDictionary(
 		Dictionary<int, string> existingDictionary, int countryCode, string countryName)
 	{
-		throw new NotImplementedException($"Please implement the (static) UpdateDictionary() method");
+		if (existingDictionary.ContainsKey(countryCode))
+		{
+			existingDictionary[countryCode] = countryName;
+		}
+		return existingDictionary;
 	}
 
 	public static Dictionary<int, string> RemoveCountryFromDictionary(
 		Dictionary<int, string> existingDictionary, int countryCode)
 	{
-		throw new NotImplementedException($"Please implement the (static) RemoveCountryFromDictionary() method");
+		if (existingDictionary.ContainsKey(countryCode))
+		{
+			existingDictionary.Remove(countryCode);
+		}
+		return existingDictionary;
 	}
 
 	public static string FindLongestCountryName(Dictionary<int, string> existingDictionary)
 	{
-		throw new NotImplementedException($"Please implement the (static) FindLongestCountryName() method");
+		string result = "";
+		foreach (var code in existingDictionary)
+		{
+			if (code.Value.Length > result.Length)
+			{
+				result = code.Value;
+			}
+		}
+		return result;
 	}
 }
