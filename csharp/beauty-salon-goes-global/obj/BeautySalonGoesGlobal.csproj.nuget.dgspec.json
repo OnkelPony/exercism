@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/slavkafranclikova/git/Exercism/csharp/beauty-salon-goes-global/BeautySalonGoesGlobal.csproj": {}
+    "/home/gio/git/exercism/csharp/beauty-salon-goes-global/BeautySalonGoesGlobal.csproj": {}
   },
   "projects": {
-    "/Users/slavkafranclikova/git/Exercism/csharp/beauty-salon-goes-global/BeautySalonGoesGlobal.csproj": {
+    "/home/gio/git/exercism/csharp/beauty-salon-goes-global/BeautySalonGoesGlobal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/slavkafranclikova/git/Exercism/csharp/beauty-salon-goes-global/BeautySalonGoesGlobal.csproj",
+        "projectUniqueName": "/home/gio/git/exercism/csharp/beauty-salon-goes-global/BeautySalonGoesGlobal.csproj",
         "projectName": "BeautySalonGoesGlobal",
-        "projectPath": "/Users/slavkafranclikova/git/Exercism/csharp/beauty-salon-goes-global/BeautySalonGoesGlobal.csproj",
-        "packagesPath": "/Users/slavkafranclikova/.nuget/packages/",
-        "outputPath": "/Users/slavkafranclikova/git/Exercism/csharp/beauty-salon-goes-global/obj/",
+        "projectPath": "/home/gio/git/exercism/csharp/beauty-salon-goes-global/BeautySalonGoesGlobal.csproj",
+        "packagesPath": "/home/gio/.nuget/packages/",
+        "outputPath": "/home/gio/git/exercism/csharp/beauty-salon-goes-global/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/slavkafranclikova/.nuget/NuGet/NuGet.Config"
+          "/home/gio/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -66,12 +66,18 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.3, 7.0.3]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.103/RuntimeIdentifierGraph.json"
         }
       }
     }

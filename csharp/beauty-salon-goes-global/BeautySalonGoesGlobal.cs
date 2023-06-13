@@ -19,14 +19,40 @@ public static class Appointment
 {
     public static DateTime ShowLocalTime(DateTime dtUtc)
     {
-        throw new NotImplementedException("Please implement the (static) Appointment.ShowLocalTime() method");
+        return TimeZoneInfo.ConvertTimeFromUtc(dtUtc, TimeZoneInfo.Local);
     }
 
     public static DateTime Schedule(string appointmentDateDescription, Location location)
     {
-        throw new NotImplementedException("Please implement the (static) Appointment.Schedule() method");
+        if (OperatingSystem.IsWindows())
+        {
+            switch (location)
+            {
+                case Location.London:
+                    return TimeZoneInfo.ConvertTimeToUtc(DateTime.Parse(appointmentDateDescription), TimeZoneInfo.FindSystemTimeZoneById("GMT Standard Time"));
+                case Location.NewYork:
+                    return TimeZoneInfo.ConvertTimeToUtc(DateTime.Parse(appointmentDateDescription), TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time"));
+                case Location.Paris:
+                    return TimeZoneInfo.ConvertTimeToUtc(DateTime.Parse(appointmentDateDescription), TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time"));
+                default:
+                    return DateTime.Parse(appointmentDateDescription);
+            }
+        }
+        else
+        {
+            switch (location)
+            {
+                case Location.London:
+                    return TimeZoneInfo.ConvertTimeToUtc(DateTime.Parse(appointmentDateDescription), TimeZoneInfo.FindSystemTimeZoneById("Europe/London"));
+                case Location.NewYork:
+                    return TimeZoneInfo.ConvertTimeToUtc(DateTime.Parse(appointmentDateDescription), TimeZoneInfo.FindSystemTimeZoneById("America/New_York"));
+                case Location.Paris:
+                    return TimeZoneInfo.ConvertTimeToUtc(DateTime.Parse(appointmentDateDescription), TimeZoneInfo.FindSystemTimeZoneById("Europe/Paris"));
+                default:
+                    return DateTime.Parse(appointmentDateDescription);
+            }
+        }
     }
-
     public static DateTime GetAlertTime(DateTime appointment, AlertLevel alertLevel)
     {
         throw new NotImplementedException("Please implement the (static) Appointment.GetAlertTime() method");
