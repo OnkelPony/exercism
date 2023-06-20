@@ -24,34 +24,8 @@ public static class Appointment
 
     public static DateTime Schedule(string appointmentDateDescription, Location location)
     {
-        if (OperatingSystem.IsWindows())
-        {
-            switch (location)
-            {
-                case Location.London:
-                    return TimeZoneInfo.ConvertTimeToUtc(DateTime.Parse(appointmentDateDescription), TimeZoneInfo.FindSystemTimeZoneById("GMT Standard Time"));
-                case Location.NewYork:
-                    return TimeZoneInfo.ConvertTimeToUtc(DateTime.Parse(appointmentDateDescription), TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time"));
-                case Location.Paris:
-                    return TimeZoneInfo.ConvertTimeToUtc(DateTime.Parse(appointmentDateDescription), TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time"));
-                default:
-                    return DateTime.Parse(appointmentDateDescription);
-            }
-        }
-        else
-        {
-            switch (location)
-            {
-                case Location.London:
-                    return TimeZoneInfo.ConvertTimeToUtc(DateTime.Parse(appointmentDateDescription), TimeZoneInfo.FindSystemTimeZoneById("Europe/London"));
-                case Location.NewYork:
-                    return TimeZoneInfo.ConvertTimeToUtc(DateTime.Parse(appointmentDateDescription), TimeZoneInfo.FindSystemTimeZoneById("America/New_York"));
-                case Location.Paris:
-                    return TimeZoneInfo.ConvertTimeToUtc(DateTime.Parse(appointmentDateDescription), TimeZoneInfo.FindSystemTimeZoneById("Europe/Paris"));
-                default:
-                    return DateTime.Parse(appointmentDateDescription);
-            }
-        }
+        return TimeZoneInfo.ConvertTimeToUtc(DateTime.Parse(appointmentDateDescription), GetTimeZone(location));
+
     }
     public static DateTime GetAlertTime(DateTime appointment, AlertLevel alertLevel)
     {
@@ -66,18 +40,44 @@ public static class Appointment
 
     public static bool HasDaylightSavingChanged(DateTime dt, Location location)
     {
+        const int daysBack = 7;
+        TimeZoneInfo timeZone = GetTimeZone(location);
+        bool isDstNow = timeZone.IsDaylightSavingTime(dt);
+        for (int i = 1; i <= daysBack; i++)
+        {
+            if (isDstNow != timeZone.IsDaylightSavingTime(dt.AddDays(-i)))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static DateTime NormalizeDateTime(string dtStr, Location location)
+    {
+		TimeZoneInfo timeZone = GetTimeZone(location);
+		string format = timeZone.GetDateTimePattern();
+        return DateTime.ParseExact(dtStr, GetTimeZone(location).GetDateTimePattern);
+    }
+
+    private static TimeZoneInfo GetTimeZone(Location location)
+    {
+        TimeZoneInfo timeZone = TimeZoneInfo.Utc;
         if (OperatingSystem.IsWindows())
         {
             switch (location)
             {
                 case Location.London:
-                    return TimeZoneInfo.ConvertTimeToUtc(DateTime.Parse(appointmentDateDescription), TimeZoneInfo.FindSystemTimeZoneById("GMT Standard Time"));
+                    timeZone = TimeZoneInfo.FindSystemTimeZoneById("GMT Standard Time");
+                    break;
                 case Location.NewYork:
-                    return TimeZoneInfo.ConvertTimeToUtc(DateTime.Parse(appointmentDateDescription), TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time"));
+                    timeZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+                    break;
                 case Location.Paris:
-                    return TimeZoneInfo.ConvertTimeToUtc(DateTime.Parse(appointmentDateDescription), TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time"));
+                    timeZone = TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time");
+                    break;
                 default:
-                    return DateTime.Parse(appointmentDateDescription);
+                    break;
             }
         }
         else
@@ -85,19 +85,18 @@ public static class Appointment
             switch (location)
             {
                 case Location.London:
-                    return TimeZoneInfo.ConvertTimeToUtc(DateTime.Parse(appointmentDateDescription), TimeZoneInfo.FindSystemTimeZoneById("Europe/London"));
+                    timeZone = TimeZoneInfo.FindSystemTimeZoneById("Europe/London");
+                    break;
                 case Location.NewYork:
-                    return TimeZoneInfo.ConvertTimeToUtc(DateTime.Parse(appointmentDateDescription), TimeZoneInfo.FindSystemTimeZoneById("America/New_York"));
+                    timeZone = TimeZoneInfo.FindSystemTimeZoneById("America/New_York");
+                    break;
                 case Location.Paris:
-                    return TimeZoneInfo.ConvertTimeToUtc(DateTime.Parse(appointmentDateDescription), TimeZoneInfo.FindSystemTimeZoneById("Europe/Paris"));
+                    timeZone = TimeZoneInfo.FindSystemTimeZoneById("Europe/Paris");
+                    break;
                 default:
-                    return DateTime.Parse(appointmentDateDescription);
+                    break;
             }
         }
-    }
-
-    public static DateTime NormalizeDateTime(string dtStr, Location location)
-    {
-        throw new NotImplementedException("Please implement the (static) Appointment.NormalizeDateTime() method");
+        return timeZone;
     }
 }
