@@ -19,7 +19,7 @@
 !**/.gitignore
 !**/.eslintrc
 !**/.npmrc
-!**/.vscode/*
+#!**/.vscode/*
 !**/.idea/*
 !**/.exercism/*
 !**/*.csv
