@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 
 
 public enum Location
@@ -55,16 +56,19 @@ public static class Appointment
 
     public static DateTime NormalizeDateTime(string dtStr, Location location)
     {
-        TimeZoneInfo timeZone = GetTimeZone(location);
-        string dateTimeZone = $"{dtStr} {timeZone.Id}";
+        string dateTimeFormat = "dd/MM/yyyy HH:mm:ss";
+        if (location == Location.NewYork)
+        {
+            dateTimeFormat = "MM/dd/yyyy HH:mm:ss";
+        }
         DateTime parsedDateTime;
-        if (DateTime.TryParse(dateTimeZone, out parsedDateTime))
+        if (DateTime.TryParseExact(dtStr, dateTimeFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedDateTime))
         {
             return parsedDateTime;
         }
         else
         {
-            return new DateTime(1,1,1,0,0,0);
+            return new DateTime(1, 1, 1, 0, 0, 0);
         }
     }
 
