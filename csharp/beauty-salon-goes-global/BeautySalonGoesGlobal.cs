@@ -55,9 +55,17 @@ public static class Appointment
 
     public static DateTime NormalizeDateTime(string dtStr, Location location)
     {
-		TimeZoneInfo timeZone = GetTimeZone(location);
-		string format = timeZone.GetDateTimePattern();
-        return DateTime.ParseExact(dtStr, GetTimeZone(location).GetDateTimePattern);
+        TimeZoneInfo timeZone = GetTimeZone(location);
+        string dateTimeZone = $"{dtStr} {timeZone.Id}";
+        DateTime parsedDateTime;
+        if (DateTime.TryParse(dateTimeZone, out parsedDateTime))
+        {
+            return parsedDateTime;
+        }
+        else
+        {
+            return new DateTime(1,1,1,0,0,0);
+        }
     }
 
     private static TimeZoneInfo GetTimeZone(Location location)

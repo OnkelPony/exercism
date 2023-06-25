@@ -5793,11 +5793,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/slavkafranclikova/git/Exercism/csharp/beauty-salon-goes-global/BeautySalonGoesGlobal.csproj",
-      "projectName": "BeautySalonGoesGlobal",
-      "projectPath": "/Users/slavkafranclikova/git/Exercism/csharp/beauty-salon-goes-global/BeautySalonGoesGlobal.csproj",
+      "projectUniqueName": "/Users/slavkafranclikova/git/Exercism/csharp/calculator-conundrum/CalculatorConundrum.csproj",
+      "projectName": "CalculatorConundrum",
+      "projectPath": "/Users/slavkafranclikova/git/Exercism/csharp/calculator-conundrum/CalculatorConundrum.csproj",
       "packagesPath": "/Users/slavkafranclikova/.nuget/packages/",
-      "outputPath": "/Users/slavkafranclikova/git/Exercism/csharp/beauty-salon-goes-global/obj/",
+      "outputPath": "/Users/slavkafranclikova/git/Exercism/csharp/calculator-conundrum/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/slavkafranclikova/.nuget/NuGet/NuGet.Config"
