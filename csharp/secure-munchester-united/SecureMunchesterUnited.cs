@@ -2,10 +2,21 @@ using System;
 
 public class SecurityPassMaker
 {
-    public string GetDisplayName(TeamSupport support)
-    {
-        throw new NotImplementedException($"Please implement the SecurityPassMaker.GetDisplayName() method");
-    }
+	public string GetDisplayName(TeamSupport support)
+	{
+		if (support.GetType() == typeof(Security))
+		{
+			return $"{support.Title} Priority Personnel";
+		}
+		else if (support is Staff)
+		{
+			return support.Title;
+		}
+		else
+		{
+			return "Too Important for a Security Pass";
+		}
+	}
 }
 
 /**** Please do not alter the code below ****/
