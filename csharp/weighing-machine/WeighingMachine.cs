@@ -2,11 +2,14 @@ using System;
 
 class WeighingMachine
 {
-    // TODO: define the 'Precision' property
-
-    // TODO: define the 'Weight' property
-
-    // TODO: define the 'DisplayWeight' property
-
-    // TODO: define the 'TareAdjustment' property
+	private int _precision;
+	public WeighingMachine(int precision)
+	{
+		_precision = precision;
+	}
+	public int Precision => _precision;
+	public float Weight { get; private set; }
+	// TODO: define the 'DisplayWeight' property
+    public string DisplayWeight => $"{Weight} kg";
+	public float TareAdjustment { get; private set; }
 }
