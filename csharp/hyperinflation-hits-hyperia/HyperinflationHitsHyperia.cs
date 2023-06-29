@@ -19,7 +19,8 @@ public static class CentralBank
 	public static string DisplayGDP(float @base, float multiplier)
 	{
 		float result = @base * multiplier;
-		if (Double.IsInfinity(result)){
+		if (Double.IsInfinity(result))
+		{
 			return "*** Too Big ***";
 		}
 		return $"{result}";
@@ -27,6 +28,15 @@ public static class CentralBank
 
 	public static string DisplayChiefEconomistSalary(decimal salaryBase, decimal multiplier)
 	{
-		throw new NotImplementedException($"Please implement the (static) CentralBank.DisplayChiefEconomistSalary() method");
+		decimal result;
+		try
+		{
+			result = checked(salaryBase * multiplier);
+		}
+		catch (OverflowException)
+		{
+			return "*** Much Too Big ***";
+		}
+		return $"{result}";
 	}
 }
