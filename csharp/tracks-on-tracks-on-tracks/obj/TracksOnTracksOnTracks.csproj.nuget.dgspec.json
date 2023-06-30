@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/gio/git/exercism/csharp/tracks-on-tracks-on-tracks/TracksOnTracksOnTracks.csproj": {}
+    "/mnt/sca/tracks-on-tracks-on-tracks/TracksOnTracksOnTracks.csproj": {}
   },
   "projects": {
-    "/home/gio/git/exercism/csharp/tracks-on-tracks-on-tracks/TracksOnTracksOnTracks.csproj": {
+    "/mnt/sca/tracks-on-tracks-on-tracks/TracksOnTracksOnTracks.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/gio/git/exercism/csharp/tracks-on-tracks-on-tracks/TracksOnTracksOnTracks.csproj",
+        "projectUniqueName": "/mnt/sca/tracks-on-tracks-on-tracks/TracksOnTracksOnTracks.csproj",
         "projectName": "TracksOnTracksOnTracks",
-        "projectPath": "/home/gio/git/exercism/csharp/tracks-on-tracks-on-tracks/TracksOnTracksOnTracks.csproj",
-        "packagesPath": "/home/gio/.nuget/packages/",
-        "outputPath": "/home/gio/git/exercism/csharp/tracks-on-tracks-on-tracks/obj/",
+        "projectPath": "/mnt/sca/tracks-on-tracks-on-tracks/TracksOnTracksOnTracks.csproj",
+        "packagesPath": "/root/.nuget/packages/",
+        "outputPath": "/mnt/sca/tracks-on-tracks-on-tracks/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/gio/.nuget/NuGet/NuGet.Config"
+          "/root/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -32,6 +32,10 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreLockProperties": {
+          "restorePackagesWithLockFile": "true",
+          "nuGetLockFilePath": "tmp2C9eNX.tmp"
         }
       },
       "frameworks": {

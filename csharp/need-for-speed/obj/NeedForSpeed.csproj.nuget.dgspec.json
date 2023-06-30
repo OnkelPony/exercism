@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/slavkafranclikova/git/Exercism/csharp/need-for-speed/NeedForSpeed.csproj": {}
+    "/mnt/sca/need-for-speed/NeedForSpeed.csproj": {}
   },
   "projects": {
-    "/Users/slavkafranclikova/git/Exercism/csharp/need-for-speed/NeedForSpeed.csproj": {
+    "/mnt/sca/need-for-speed/NeedForSpeed.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/slavkafranclikova/git/Exercism/csharp/need-for-speed/NeedForSpeed.csproj",
+        "projectUniqueName": "/mnt/sca/need-for-speed/NeedForSpeed.csproj",
         "projectName": "NeedForSpeed",
-        "projectPath": "/Users/slavkafranclikova/git/Exercism/csharp/need-for-speed/NeedForSpeed.csproj",
-        "packagesPath": "/Users/slavkafranclikova/.nuget/packages/",
-        "outputPath": "/Users/slavkafranclikova/git/Exercism/csharp/need-for-speed/obj/",
+        "projectPath": "/mnt/sca/need-for-speed/NeedForSpeed.csproj",
+        "packagesPath": "/root/.nuget/packages/",
+        "outputPath": "/mnt/sca/need-for-speed/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/slavkafranclikova/.nuget/NuGet/NuGet.Config"
+          "/root/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -32,6 +32,10 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreLockProperties": {
+          "restorePackagesWithLockFile": "true",
+          "nuGetLockFilePath": "tmpp9hsv6.tmp"
         }
       },
       "frameworks": {
@@ -71,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.105/RuntimeIdentifierGraph.json"
         }
       }
     }

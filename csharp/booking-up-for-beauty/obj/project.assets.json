@@ -5788,19 +5788,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/slavkafranclikova/.nuget/packages/": {}
+    "/root/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/slavkafranclikova/git/Exercism/csharp/booking-up-for-beauty/BookingUpForBeauty.csproj",
+      "projectUniqueName": "/mnt/sca/booking-up-for-beauty/BookingUpForBeauty.csproj",
       "projectName": "BookingUpForBeauty",
-      "projectPath": "/Users/slavkafranclikova/git/Exercism/csharp/booking-up-for-beauty/BookingUpForBeauty.csproj",
-      "packagesPath": "/Users/slavkafranclikova/.nuget/packages/",
-      "outputPath": "/Users/slavkafranclikova/git/Exercism/csharp/booking-up-for-beauty/obj/",
+      "projectPath": "/mnt/sca/booking-up-for-beauty/BookingUpForBeauty.csproj",
+      "packagesPath": "/root/.nuget/packages/",
+      "outputPath": "/mnt/sca/booking-up-for-beauty/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/slavkafranclikova/.nuget/NuGet/NuGet.Config"
+        "/root/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -5818,6 +5818,10 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreLockProperties": {
+        "restorePackagesWithLockFile": "true",
+        "nuGetLockFilePath": "tmpSCBhsY.tmp"
       }
     },
     "frameworks": {
@@ -5857,7 +5861,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.105/RuntimeIdentifierGraph.json"
       }
     }
   }

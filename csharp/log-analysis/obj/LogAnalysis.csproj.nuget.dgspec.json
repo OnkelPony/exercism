@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/gio/git/exercism/csharp/log-analysis/LogAnalysis.csproj": {}
+    "/mnt/sca/log-analysis/LogAnalysis.csproj": {}
   },
   "projects": {
-    "/home/gio/git/exercism/csharp/log-analysis/LogAnalysis.csproj": {
+    "/mnt/sca/log-analysis/LogAnalysis.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/gio/git/exercism/csharp/log-analysis/LogAnalysis.csproj",
+        "projectUniqueName": "/mnt/sca/log-analysis/LogAnalysis.csproj",
         "projectName": "LogAnalysis",
-        "projectPath": "/home/gio/git/exercism/csharp/log-analysis/LogAnalysis.csproj",
-        "packagesPath": "/home/gio/.nuget/packages/",
-        "outputPath": "/home/gio/git/exercism/csharp/log-analysis/obj/",
+        "projectPath": "/mnt/sca/log-analysis/LogAnalysis.csproj",
+        "packagesPath": "/root/.nuget/packages/",
+        "outputPath": "/mnt/sca/log-analysis/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/gio/.nuget/NuGet/NuGet.Config"
+          "/root/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -32,6 +32,10 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreLockProperties": {
+          "restorePackagesWithLockFile": "true",
+          "nuGetLockFilePath": "tmpF38TJp.tmp"
         }
       },
       "frameworks": {
@@ -66,18 +70,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.3, 7.0.3]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.103/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.105/RuntimeIdentifierGraph.json"
         }
       }
     }

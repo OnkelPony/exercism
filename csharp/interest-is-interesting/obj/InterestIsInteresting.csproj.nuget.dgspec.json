@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jmartinek\\git\\exercism\\csharp\\interest-is-interesting\\InterestIsInteresting.csproj": {}
+    "/mnt/sca/interest-is-interesting/InterestIsInteresting.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jmartinek\\git\\exercism\\csharp\\interest-is-interesting\\InterestIsInteresting.csproj": {
+    "/mnt/sca/interest-is-interesting/InterestIsInteresting.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jmartinek\\git\\exercism\\csharp\\interest-is-interesting\\InterestIsInteresting.csproj",
+        "projectUniqueName": "/mnt/sca/interest-is-interesting/InterestIsInteresting.csproj",
         "projectName": "InterestIsInteresting",
-        "projectPath": "C:\\Users\\jmartinek\\git\\exercism\\csharp\\interest-is-interesting\\InterestIsInteresting.csproj",
-        "packagesPath": "C:\\Users\\jmartinek\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jmartinek\\git\\exercism\\csharp\\interest-is-interesting\\obj\\",
+        "projectPath": "/mnt/sca/interest-is-interesting/InterestIsInteresting.csproj",
+        "packagesPath": "/root/.nuget/packages/",
+        "outputPath": "/mnt/sca/interest-is-interesting/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\jmartinek\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/root/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -32,6 +32,10 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreLockProperties": {
+          "restorePackagesWithLockFile": "true",
+          "nuGetLockFilePath": "tmpUUTtuN.tmp"
         }
       },
       "frameworks": {
@@ -71,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.105/RuntimeIdentifierGraph.json"
         }
       }
     }

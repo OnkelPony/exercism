@@ -5788,19 +5788,19 @@
     ]
   },
   "packageFolders": {
-    "/home/gio/.nuget/packages/": {}
+    "/root/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/gio/git/exercism/csharp/cars-assemble/CarsAssemble.csproj",
+      "projectUniqueName": "/mnt/sca/cars-assemble/CarsAssemble.csproj",
       "projectName": "CarsAssemble",
-      "projectPath": "/home/gio/git/exercism/csharp/cars-assemble/CarsAssemble.csproj",
-      "packagesPath": "/home/gio/.nuget/packages/",
-      "outputPath": "/home/gio/git/exercism/csharp/cars-assemble/obj/",
+      "projectPath": "/mnt/sca/cars-assemble/CarsAssemble.csproj",
+      "packagesPath": "/root/.nuget/packages/",
+      "outputPath": "/mnt/sca/cars-assemble/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/gio/.nuget/NuGet/NuGet.Config"
+        "/root/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -5818,6 +5818,10 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreLockProperties": {
+        "restorePackagesWithLockFile": "true",
+        "nuGetLockFilePath": "tmpc1OtCL.tmp"
       }
     },
     "frameworks": {
@@ -5852,18 +5856,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[7.0.3, 7.0.3]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.103/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.105/RuntimeIdentifierGraph.json"
       }
     }
   }

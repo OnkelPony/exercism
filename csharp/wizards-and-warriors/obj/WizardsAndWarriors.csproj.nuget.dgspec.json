@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/slavkafranclikova/git/Exercism/csharp/wizards-and-warriors/WizardsAndWarriors.csproj": {}
+    "/mnt/sca/wizards-and-warriors/WizardsAndWarriors.csproj": {}
   },
   "projects": {
-    "/Users/slavkafranclikova/git/Exercism/csharp/wizards-and-warriors/WizardsAndWarriors.csproj": {
+    "/mnt/sca/wizards-and-warriors/WizardsAndWarriors.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/slavkafranclikova/git/Exercism/csharp/wizards-and-warriors/WizardsAndWarriors.csproj",
+        "projectUniqueName": "/mnt/sca/wizards-and-warriors/WizardsAndWarriors.csproj",
         "projectName": "WizardsAndWarriors",
-        "projectPath": "/Users/slavkafranclikova/git/Exercism/csharp/wizards-and-warriors/WizardsAndWarriors.csproj",
-        "packagesPath": "/Users/slavkafranclikova/.nuget/packages/",
-        "outputPath": "/Users/slavkafranclikova/git/Exercism/csharp/wizards-and-warriors/obj/",
+        "projectPath": "/mnt/sca/wizards-and-warriors/WizardsAndWarriors.csproj",
+        "packagesPath": "/root/.nuget/packages/",
+        "outputPath": "/mnt/sca/wizards-and-warriors/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/slavkafranclikova/.nuget/NuGet/NuGet.Config"
+          "/root/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -32,6 +32,10 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreLockProperties": {
+          "restorePackagesWithLockFile": "true",
+          "nuGetLockFilePath": "tmpUKZPJb.tmp"
         }
       },
       "frameworks": {
@@ -71,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.105/RuntimeIdentifierGraph.json"
         }
       }
     }
