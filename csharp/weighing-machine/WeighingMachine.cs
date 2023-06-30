@@ -2,14 +2,24 @@ using System;
 
 class WeighingMachine
 {
-	private int _precision;
-	public WeighingMachine(int precision)
-	{
-		_precision = precision;
-	}
-	public int Precision => _precision;
-	public float Weight { get; private set; }
-	// TODO: define the 'DisplayWeight' property
-    public string DisplayWeight => $"{Weight} kg";
-	public float TareAdjustment { get; private set; }
+    private double _weight;
+    public WeighingMachine(int precision)
+    {
+        Precision = precision;
+    }
+    public int Precision { get; set; }
+    public double Weight
+    {
+        get => _weight;
+        set
+        {
+            if (value < 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            _weight = value;
+        }
+    }
+    public string DisplayWeight => String.Format("{0:N" + Precision + "} kg", _weight - TareAdjustment);
+    public double TareAdjustment { get; set; } = 5;
 }
