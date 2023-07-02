@@ -61,7 +61,7 @@ public class WeatherStation
         {
             Outlook longTermOutlook = reading.WindDirection switch
             {
-                WindDirection.Southerly when reading.Temperature > 20 => Outlook.Good,
+                WindDirection.Southerly => Outlook.Good,
                 WindDirection.Easterly when reading.Temperature > 20 => Outlook.Good,
                 WindDirection.Northerly => Outlook.Cool,
                 WindDirection.Easterly when reading.Temperature < 20 => Outlook.Warm,
