@@ -20,14 +20,8 @@ static class Permissions
 {
     public static Permission Default(AccountType accountType)
     {
-        if (Enum.IsDefined(typeof(AccountType), accountType))
-        {
-            return (Permission)accountType;
-        }
-        else
-        {
-            return Permission.None;
-        }
+        return Enum.IsDefined(typeof(AccountType), accountType) ? (Permission)accountType : Permission.None;
+
     }
 
     public static Permission Grant(Permission current, Permission grant)
@@ -37,11 +31,11 @@ static class Permissions
 
     public static Permission Revoke(Permission current, Permission revoke)
     {
-        return (Permission)((short)current - revoke);
+        return (Permission)((short)current & (~(short)revoke));
     }
 
     public static bool Check(Permission current, Permission check)
     {
-        throw new NotImplementedException("Please implement the (static) Permissions.Check() method");
+        return ((short)current | (short)check) == (short)current;
     }
 }

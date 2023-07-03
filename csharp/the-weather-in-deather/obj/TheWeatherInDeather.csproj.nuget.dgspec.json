@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/slavkafranclikova/git/Exercism/csharp/the-weather-in-deather/TheWeatherInDeather.csproj": {}
+    "/home/gio/git/exercism/csharp/the-weather-in-deather/TheWeatherInDeather.csproj": {}
   },
   "projects": {
-    "/Users/slavkafranclikova/git/Exercism/csharp/the-weather-in-deather/TheWeatherInDeather.csproj": {
+    "/home/gio/git/exercism/csharp/the-weather-in-deather/TheWeatherInDeather.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/slavkafranclikova/git/Exercism/csharp/the-weather-in-deather/TheWeatherInDeather.csproj",
+        "projectUniqueName": "/home/gio/git/exercism/csharp/the-weather-in-deather/TheWeatherInDeather.csproj",
         "projectName": "TheWeatherInDeather",
-        "projectPath": "/Users/slavkafranclikova/git/Exercism/csharp/the-weather-in-deather/TheWeatherInDeather.csproj",
-        "packagesPath": "/Users/slavkafranclikova/.nuget/packages/",
-        "outputPath": "/Users/slavkafranclikova/git/Exercism/csharp/the-weather-in-deather/obj/",
+        "projectPath": "/home/gio/git/exercism/csharp/the-weather-in-deather/TheWeatherInDeather.csproj",
+        "packagesPath": "/home/gio/.nuget/packages/",
+        "outputPath": "/home/gio/git/exercism/csharp/the-weather-in-deather/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/slavkafranclikova/.nuget/NuGet/NuGet.Config"
+          "/home/gio/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -71,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.304/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.108/RuntimeIdentifierGraph.json"
         }
       }
     }
