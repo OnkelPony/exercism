@@ -5,23 +5,23 @@ using System.Collections.Generic;
 public interface IRemoteControlCar
 {
     public int DistanceTravelled { get; }
-	void Drive();
+    void Drive();
 }
 
-public class ProductionRemoteControlCar : IRemoteControlCar, IComparable<T>
+public class ProductionRemoteControlCar : IRemoteControlCar, IComparable<ProductionRemoteControlCar>
 {
 	public int DistanceTravelled { get; private set; }
 	public int NumberOfVictories { get; set; }
 
-	public void Drive()
-	{
-		DistanceTravelled += 10;
-	}
+    public void Drive()
+    {
+        DistanceTravelled += 10;
+    }
 
-	int IComparable<T>.CompareTo(T? other)
-	{
-		throw new NotImplementedException();
-	}
+    public int CompareTo(ProductionRemoteControlCar other)
+    {
+        return this.NumberOfVictories.CompareTo(other.NumberOfVictories);
+    }
 }
 
 public class ExperimentalRemoteControlCar : IRemoteControlCar
@@ -36,14 +36,16 @@ public class ExperimentalRemoteControlCar : IRemoteControlCar
 
 public static class TestTrack
 {
-	public static void Race(IRemoteControlCar car)
-	{
+    public static void Race(IRemoteControlCar car)
+    {
         car.Drive();
-	}
+    }
 
-	public static List<ProductionRemoteControlCar> GetRankedCars(ProductionRemoteControlCar prc1,
-		ProductionRemoteControlCar prc2)
-	{
-		throw new NotImplementedException($"Please implement the (static) TestTrack.GetRankedCars() method");
-	}
+    public static List<ProductionRemoteControlCar> GetRankedCars(ProductionRemoteControlCar prc1,
+        ProductionRemoteControlCar prc2)
+    {
+        List<ProductionRemoteControlCar> rankedCars = new List<ProductionRemoteControlCar> { prc1, prc2 };
+        rankedCars.Sort();
+        return rankedCars;
+    }
 }
