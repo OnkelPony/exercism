@@ -10,8 +10,8 @@ public interface IRemoteControlCar
 
 public class ProductionRemoteControlCar : IRemoteControlCar, IComparable<ProductionRemoteControlCar>
 {
-    public int DistanceTravelled { get; private set; }
-    public int NumberOfVictories { get; set; }
+	public int DistanceTravelled { get; private set; }
+	public int NumberOfVictories { get; set; }
 
     public void Drive()
     {
@@ -26,12 +26,12 @@ public class ProductionRemoteControlCar : IRemoteControlCar, IComparable<Product
 
 public class ExperimentalRemoteControlCar : IRemoteControlCar
 {
-    public int DistanceTravelled { get; private set; }
+	public int DistanceTravelled { get; private set; }
 
-    public void Drive()
-    {
-        DistanceTravelled += 20;
-    }
+	public void Drive()
+	{
+		DistanceTravelled += 20;
+	}
 }
 
 public static class TestTrack
