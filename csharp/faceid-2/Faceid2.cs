@@ -10,7 +10,11 @@ public class FacialFeatures
         EyeColor = eyeColor;
         PhiltrumWidth = philtrumWidth;
     }
-    // TODO: implement equality and GetHashCode() methods
+	// TODO: implement equality and GetHashCode() methods
+	public  bool Equals(FacialFeatures other)
+	{
+		return this.EyeColor == other.EyeColor && this.PhiltrumWidth == other.PhiltrumWidth;
+	}
 }
 
 public class Identity
@@ -30,7 +34,7 @@ public class Authenticator
 {
     public static bool AreSameFace(FacialFeatures faceA, FacialFeatures faceB)
     {
-        throw new NotImplementedException("Please implement the (static) Authenticator.AreSameFace() method");
+        return faceA.Equals(faceB);
     }
 
     public bool IsAdmin(Identity identity)
