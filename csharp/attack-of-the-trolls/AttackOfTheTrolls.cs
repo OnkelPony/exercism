@@ -1,6 +1,6 @@
 using System;
 
-enum AccountType : short
+enum AccountType : byte
 {
     Guest = 1,
     User = 3,
@@ -8,7 +8,7 @@ enum AccountType : short
 }
 
 [Flags]
-enum Permission : short
+enum Permission : byte
 {
     None = 0,
     Read = 1,
@@ -26,12 +26,12 @@ static class Permissions
 
     public static Permission Grant(Permission current, Permission grant)
     {
-        return (Permission)((short)current | (short)grant);
+        return (Permission)((byte)current | (byte)grant);
     }
 
     public static Permission Revoke(Permission current, Permission revoke)
     {
-        return (Permission)((short)current & (~(short)revoke));
+        return (Permission)((byte)current - revoke);
     }
 
     public static bool Check(Permission current, Permission check)
