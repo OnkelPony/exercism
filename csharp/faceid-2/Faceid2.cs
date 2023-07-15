@@ -12,9 +12,15 @@ public class FacialFeatures
         PhiltrumWidth = philtrumWidth;
     }
 	// TODO: implement equality and GetHashCode() methods
-	public  bool Equals(FacialFeatures other)
+	public override bool Equals(object obj)
 	{
+        FacialFeatures other = (FacialFeatures)obj;
 		return this.EyeColor == other.EyeColor && this.PhiltrumWidth == other.PhiltrumWidth;
+	}
+
+	public override int GetHashCode()
+	{
+		return EyeColor.GetHashCode() + PhiltrumWidth.GetHashCode();
 	}
 }
 
@@ -29,10 +35,16 @@ public class Identity
         FacialFeatures = facialFeatures;
     }
     // TODO: implement equality and GetHashCode() methods
-    public bool Equals(Identity other)
+    public override bool Equals(object obj)
     {
-        return this.Email == other.Email && this.FacialFeatures == other.FacialFeatures;
+        Identity other = (Identity)obj;
+        return this.Email == other.Email && this.FacialFeatures.Equals(other.FacialFeatures);
     }
+
+	public override int GetHashCode()
+	{
+		return Email.GetHashCode() + FacialFeatures.GetHashCode();
+	}
 }
 
 public class Authenticator
@@ -50,7 +62,7 @@ public class Authenticator
 
     public bool Register(Identity identity)
     {
-        if (Identities.Contains(identity))
+        if (IsRegistered(identity))
         {
             return false;
         }
@@ -60,11 +72,11 @@ public class Authenticator
 
     public bool IsRegistered(Identity identity)
     {
-        throw new NotImplementedException("Please implement the Authenticator.IsRegistered() method");
+        return Identities.Contains(identity);
     }
 
     public static bool AreSameObject(Identity identityA, Identity identityB)
     {
-        throw new NotImplementedException("Please implement the Authenticator.AreSameObject() method");
+        return identityA == identityB;
     }
 }
