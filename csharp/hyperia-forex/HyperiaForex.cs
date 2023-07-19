@@ -10,10 +10,9 @@ public struct CurrencyAmount
         this.currency = currency;
     }
 
-    // TODO: implement equality operators
     public static bool operator ==(CurrencyAmount left, CurrencyAmount right)
     {
-                if (left.currency != right.currency)
+        if (left.currency != right.currency)
         {
             throw new ArgumentException("Currency mismatch");
         }
@@ -25,9 +24,37 @@ public struct CurrencyAmount
         return !(left == right);
     }
 
-    // TODO: implement comparison operators
+    public static bool operator >(CurrencyAmount left, CurrencyAmount right)
+    {
+        if (left.currency != right.currency)
+        {
+            throw new ArgumentException("Currency mismatch");
+        }
+        return left.amount > right.amount;
+    }
 
+    public static bool operator <(CurrencyAmount left, CurrencyAmount right)
+    {
+        return !(left > right);
+    }
     // TODO: implement arithmetic operators
+    public static CurrencyAmount operator +(CurrencyAmount left, CurrencyAmount right)
+    {
+        if (left.currency != right.currency)
+        {
+            throw new ArgumentException("Currency mismatch");
+        }
+        return new CurrencyAmount(left.amount + right.amount, left.currency);
+    }
+
+    public static CurrencyAmount operator -(CurrencyAmount left, CurrencyAmount right)
+    {
+        if (left.currency != right.currency)
+        {
+            throw new ArgumentException("Currency mismatch");
+        }
+        return new CurrencyAmount(left.amount - right.amount, left.currency);
+    }
 
     // TODO: implement type conversion operators
 }
