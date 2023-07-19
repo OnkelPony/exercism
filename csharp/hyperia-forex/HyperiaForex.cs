@@ -56,5 +56,34 @@ public struct CurrencyAmount
         return new CurrencyAmount(left.amount - right.amount, left.currency);
     }
 
+    public static CurrencyAmount operator *(decimal factor, CurrencyAmount amount)
+    {
+        return new CurrencyAmount(factor * amount.amount, amount.currency);
+    }
+
+    public static CurrencyAmount operator *(CurrencyAmount amount, decimal factor)
+    {
+        return new CurrencyAmount(factor * amount.amount, amount.currency);
+    }
+
+
+    public static CurrencyAmount operator /(CurrencyAmount amount, decimal factor)
+    {
+        if (factor == 0m)
+        {
+            throw new DivideByZeroException();
+        }
+        return new CurrencyAmount(amount.amount / factor, amount.currency);
+    }
+
     // TODO: implement type conversion operators
+    public static explicit operator double(CurrencyAmount amount)
+    {
+        return (double)amount.amount;
+    }
+
+    public static implicit operator decimal(CurrencyAmount amount)
+    {
+        return amount.amount;
+    }
 }
