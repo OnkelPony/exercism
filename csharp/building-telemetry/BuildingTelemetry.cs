@@ -29,7 +29,17 @@ public class RemoteControlCar
     public bool GetTelemetryData(ref int serialNum,
         out int batteryPercentage, out int distanceDrivenInMeters)
     {
-        throw new NotImplementedException("Please implement the RemoteControlCar.GetTelemetryData() method");
+        if (serialNum < latestSerialNum)
+        {
+            serialNum = latestSerialNum;
+            batteryPercentage = -1;
+            distanceDrivenInMeters = -1;
+            return false;
+        }
+        latestSerialNum = serialNum;
+        batteryPercentage = this.batteryPercentage;
+        distanceDrivenInMeters = this.distanceDrivenInMeters;
+        return true;
     }
 
     public static RemoteControlCar Buy()
@@ -49,6 +59,10 @@ public class TelemetryClient
 
     public string GetBatteryUsagePerMeter(int serialNum)
     {
-        throw new NotImplementedException("Please implement the TelemetryClient.GetBatteryUsagePerMeter() method");
+        if (!car.GetTelemetryData(ref serialNum, out int batteryPercentage, out int distanceDrivenInMeters) || distanceDrivenInMeters == 0)
+        {
+            return "no data";
+        }
+        return $"usage-per-meter={(100 - batteryPercentage) / distanceDrivenInMeters}";
     }
 }
