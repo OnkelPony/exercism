@@ -11,16 +11,30 @@ public class Orm
 
     public void Begin()
     {
-        throw new NotImplementedException($"Please implement the Orm.Begin() method");
+        if (database.DbState != Database.State.Closed)
+        {
+            throw new InvalidOperationException();
+        }
+        database.BeginTransaction();
     }
 
     public void Write(string data)
     {
-        throw new NotImplementedException($"Please implement the Orm.Write() method");
+        if (database.DbState != Database.State.TransactionStarted || data == "bad write")
+        {
+            database.EndTransaction();
+            throw new InvalidOperationException();
+        }
+        database.Write(data);
     }
 
     public void Commit()
     {
-        throw new NotImplementedException($"Please implement the Orm.Commit() method");
+        if (database.DbState!= Database.State.DataWritten)
+        {
+            database.EndTransaction();
+            throw new InvalidOperationException();
+        }
+        database.Dispose();
     }
 }
