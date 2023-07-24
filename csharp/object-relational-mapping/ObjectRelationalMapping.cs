@@ -1,6 +1,6 @@
 using System;
 
-public class Orm
+public class Orm : IDisposable
 {
     private Database database;
 
@@ -30,11 +30,16 @@ public class Orm
 
     public void Commit()
     {
-        if (database.DbState!= Database.State.DataWritten)
+        if (database.DbState != Database.State.DataWritten)
         {
             database.EndTransaction();
             throw new InvalidOperationException();
         }
+        database.Dispose();
+    }
+
+    public void Dispose()
+    {
         database.Dispose();
     }
 }
