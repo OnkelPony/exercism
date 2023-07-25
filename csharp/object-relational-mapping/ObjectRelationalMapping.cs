@@ -20,22 +20,26 @@ public class Orm : IDisposable
 
     public void Write(string data)
     {
-        if (database.DbState != Database.State.TransactionStarted || data == "bad write")
+        try
         {
-            database.EndTransaction();
-            throw new InvalidOperationException();
+            database.Write(data);
         }
-        database.Write(data);
+        catch (InvalidOperationException)
+        {
+            database.Dispose();
+        }
     }
 
     public void Commit()
     {
-        if (database.DbState != Database.State.DataWritten)
+        try
         {
-            database.EndTransaction();
-            throw new InvalidOperationException();
+        database.EndTransaction();
         }
-        database.Dispose();
+        catch (InvalidOperationException)
+        {
+            database.Dispose();
+        }
     }
 
     public void Dispose()
