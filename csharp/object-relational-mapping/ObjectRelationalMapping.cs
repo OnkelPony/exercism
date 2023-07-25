@@ -34,7 +34,7 @@ public class Orm : IDisposable
     {
         try
         {
-        database.EndTransaction();
+            database.EndTransaction();
         }
         catch (InvalidOperationException)
         {
