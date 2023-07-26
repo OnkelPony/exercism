@@ -11,11 +11,29 @@ public class Orm
 
     public void Write(string data)
     {
-        throw new NotImplementedException($"Please implement the Orm.Write() method");
+        using var database = this.database;
+        try
+        {
+            database.BeginTransaction();
+            database.Write(data);
+        }
+        finally
+        {
+            database.EndTransaction();
+        }
     }
 
     public bool WriteSafely(string data)
     {
-        throw new NotImplementedException($"Please implement the Orm.WriteSafely() method");
+        try
+        {
+            this.Write(data);
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+        return true;
     }
 }
+
