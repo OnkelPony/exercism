@@ -5788,19 +5788,19 @@
     ]
   },
   "packageFolders": {
-    "/home/gio/.nuget/packages/": {}
+    "/Users/slavkafranclikova/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/gio/git/exercism/csharp/high-school-sweethearts/HighSchoolSweethearts.csproj",
+      "projectUniqueName": "/Users/slavkafranclikova/git/Exercism/csharp/high-school-sweethearts/HighSchoolSweethearts.csproj",
       "projectName": "HighSchoolSweethearts",
-      "projectPath": "/home/gio/git/exercism/csharp/high-school-sweethearts/HighSchoolSweethearts.csproj",
-      "packagesPath": "/home/gio/.nuget/packages/",
-      "outputPath": "/home/gio/git/exercism/csharp/high-school-sweethearts/obj/",
+      "projectPath": "/Users/slavkafranclikova/git/Exercism/csharp/high-school-sweethearts/HighSchoolSweethearts.csproj",
+      "packagesPath": "/Users/slavkafranclikova/.nuget/packages/",
+      "outputPath": "/Users/slavkafranclikova/git/Exercism/csharp/high-school-sweethearts/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/gio/.nuget/NuGet/NuGet.Config"
+        "/Users/slavkafranclikova/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -5857,7 +5857,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.109/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.304/RuntimeIdentifierGraph.json"
       }
     }
   }
