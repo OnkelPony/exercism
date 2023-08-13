@@ -13,12 +13,29 @@ public static class HighSchoolSweethearts
 
     public static string DisplayBanner(string studentA, string studentB)
     {
-        throw new NotImplementedException($"Please implement the (static) HighSchoolSweethearts.DisplayBanner() method");
+        return $@"
+     ******       ******
+   **      **   **      **
+ **         ** **         **
+**            *            **
+**                         **
+**     {studentA} +  {studentB}    **
+ **                       **
+   **                   **
+     **               **
+       **           **
+         **       **
+           **   **
+             ***
+              *
+";
     }
 
     public static string DisplayGermanExchangeStudents(string studentA
         , string studentB, DateTime start, float hours)
     {
-        throw new NotImplementedException($"Please implement the (static) HighSchoolSweethearts.DisplayGermanExchangeStudents() method");
+        var culture =     System.Globalization.CultureInfo.GetCultureInfo("de_DE");
+        FormattableString message = $"{start} - that's {hours} hours";
+        return $"{studentA} and {studentB} have been dating since {message.ToString(culture)}";
     }
 }
