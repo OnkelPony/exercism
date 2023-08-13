@@ -35,7 +35,7 @@ public static class HighSchoolSweethearts
         , string studentB, DateTime start, float hours)
     {
         var culture =     System.Globalization.CultureInfo.GetCultureInfo("de_DE");
-        FormattableString message = $"{start.ToShortDateString()} - that's {hours:n2} hours";
+        FormattableString message = $"{start:d} - that's {hours:n2} hours";
         return $"{studentA} and {studentB} have been dating since {message.ToString(culture)}";
     }
 }

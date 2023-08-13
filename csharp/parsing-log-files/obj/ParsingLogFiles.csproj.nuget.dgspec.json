@@ -1,0 +1,85 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/gio/git/exercism/csharp/parsing-log-files/ParsingLogFiles.csproj": {}
+  },
+  "projects": {
+    "/home/gio/git/exercism/csharp/parsing-log-files/ParsingLogFiles.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/gio/git/exercism/csharp/parsing-log-files/ParsingLogFiles.csproj",
+        "projectName": "ParsingLogFiles",
+        "projectPath": "/home/gio/git/exercism/csharp/parsing-log-files/ParsingLogFiles.csproj",
+        "packagesPath": "/home/gio/.nuget/packages/",
+        "outputPath": "/home/gio/git/exercism/csharp/parsing-log-files/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/gio/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Exercism.Tests": {
+              "target": "Package",
+              "version": "[0.1.0-beta1, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.8.3, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.1, )"
+            },
+            "xunit.runner.visualstudio": {
+              "target": "Package",
+              "version": "[2.4.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.9, 7.0.9]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.109/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
