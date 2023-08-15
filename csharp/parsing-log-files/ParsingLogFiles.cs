@@ -5,7 +5,7 @@ public class LogParser
 {
     public bool IsValidLine(string text)
     {
-        return Regex.IsMatch(text, @"^\[INF\].*");
+        return Regex.IsMatch(text, @"^\[TRC\].*|^\[DBG\].*|^\[INF\].*|^\[WRN\].*|^\[ERR\].*|^\[FTL\].*");
     }
 
     public string[] SplitLogLine(string text)
