@@ -5,7 +5,7 @@ public class LogParser
 {
     public bool IsValidLine(string text)
     {
-        throw new NotImplementedException($"Please implement the LogParser.IsValidLine() method");
+        return Regex.IsMatch(text, @"^\[INF\].*");
     }
 
     public string[] SplitLogLine(string text)
