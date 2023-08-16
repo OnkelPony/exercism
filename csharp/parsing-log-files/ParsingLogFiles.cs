@@ -16,12 +16,21 @@ public class LogParser
 
     public int CountQuotedPasswords(string lines)
     {
-        throw new NotImplementedException($"Please implement the LogParser.CountQuotedPasswords() method");
+        int count = 0;
+        string[] allLines = lines.Split(Environment.NewLine);
+        foreach (string line in allLines)
+        {
+            if (Regex.IsMatch(line, "\\\".*password.*\\\"", RegexOptions.IgnoreCase))
+            {
+                count++;
+            }
+        }
+        return count;
     }
 
     public string RemoveEndOfLineText(string line)
     {
-        throw new NotImplementedException($"Please implement the LogParser.RemoveEndOfLineText() method");
+        return Regex.Replace(line, @"end-of-line\d*", "");
     }
 
     public string[] ListLinesWithPasswords(string[] lines)
