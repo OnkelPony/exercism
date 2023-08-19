@@ -14,7 +14,7 @@ public struct Coord
     public ushort Y { get; }
 }
 
-public struct Plot
+public struct Plot : IComparable<Plot>
 {
     public Plot(Coord tl, Coord tr, Coord bl, Coord br)
     {
@@ -28,6 +28,11 @@ public struct Plot
     public Coord TR { get; }
     public Coord BL { get; }
     public Coord BR { get; }
+
+    public int CompareTo(Plot other)
+    {
+        
+    }
 }
 
 
@@ -46,11 +51,11 @@ public class ClaimsHandler
 
     public bool IsLastClaim(Plot plot)
     {
-        throw new NotImplementedException("Please implement the ClaimsHandler.IsLastClaim() method");
+        return claims[claims.Count - 1].Equals(plot);
     }
 
     public Plot GetClaimWithLongestSide()
     {
-        throw new NotImplementedException("Please implement the ClaimsHandler.GetClaimWithLongestSide() method");
+        Plot longestSidePlot;
     }
 }
