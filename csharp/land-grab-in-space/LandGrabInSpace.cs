@@ -16,22 +16,31 @@ public struct Coord
 
 public struct Plot : IComparable<Plot>
 {
-    public Plot(Coord tl, Coord tr, Coord bl, Coord br)
+    public Plot(Coord A, Coord B, Coord C, Coord D)
     {
-        TL = tl;
-        TR = tr;
-        BL = bl;
-        BR = br;
+        this.A = A;
+        this.B = B;
+        this.C = C;
+        this.D = D;
     }
 
-    public Coord TL { get; }
-    public Coord TR { get; }
-    public Coord BL { get; }
-    public Coord BR { get; }
+    public Coord A { get; }
+    public Coord B { get; }
+    public Coord C { get; }
+    public Coord D { get; }
 
     public int CompareTo(Plot other)
     {
-        
+        return (int)(this.LongestSide() - other.LongestSide());
+    }
+
+    public double LongestSide()
+    {
+        double a = Math.Sqrt(Math.Pow(B.X - A.X, 2) + Math.Pow(B.Y - A.Y, 2));
+        double b = Math.Sqrt(Math.Pow(C.X - B.X, 2) + Math.Pow(C.Y - B.Y, 2));
+        double c = Math.Sqrt(Math.Pow(D.X - C.X, 2) + Math.Pow(D.Y - C.Y, 2));
+        double d = Math.Sqrt(Math.Pow(A.X - D.X, 2) + Math.Pow(A.Y - D.Y, 2));
+        return Math.Max(a, Math.Max(b, Math.Max(c, d)));
     }
 }
 
@@ -56,6 +65,14 @@ public class ClaimsHandler
 
     public Plot GetClaimWithLongestSide()
     {
-        Plot longestSidePlot;
+        Plot longestSidePlot = claims[0];
+        foreach (Plot claim in claims)
+        {
+            if (claim.CompareTo(longestSidePlot) > 0)
+            {
+                longestSidePlot = claim;
+            }
+        }
+        return longestSidePlot;
     }
 }
