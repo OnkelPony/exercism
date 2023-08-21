@@ -6,32 +6,36 @@ public class RemoteControlCar
 
     // TODO encapsulate the methods suffixed with "_Telemetry" in their own class
     // dropping the suffix from the method name
-    public void Calibrate_Telementry()
+    public Telemetry Itelemetry { get; set; }
+    public class Telemetry
     {
+        RemoteControlCar car = new RemoteControlCar();
 
-    }
-
-    public bool SelfTest_Telemetry()
-    {
-        return true;
-    }
-
-    public void ShowSponsor_Telemetry(string sponsorName)
-    {
-        SetSponsor(sponsorName);
-    }
-
-    public void SetSpeed_Telemetry(decimal amount, string unitsString)
-    {
-        SpeedUnits speedUnits = SpeedUnits.MetersPerSecond;
-        if (unitsString == "cps")
+        public void Calibrate()
         {
-            speedUnits = SpeedUnits.CentimetersPerSecond;
+
         }
 
-        SetSpeed(new Speed(amount, speedUnits));
-    }
+        public bool SelfTest()
+        {
+            return true;
+        }
 
+        public void ShowSponsor(string sponsorName)
+        {
+            car.SetSponsor(sponsorName);
+        }
+
+        public void SetSpeed(decimal amount, string unitsString)
+        {
+            SpeedUnits speedUnits = SpeedUnits.MetersPerSecond;
+            if (unitsString == "cps")
+            {
+                speedUnits = SpeedUnits.CentimetersPerSecond;
+            }
+            car.SetSpeed(new Speed(amount, speedUnits));
+        }
+    }
     public string GetSpeed()
     {
         return currentSpeed.ToString();
