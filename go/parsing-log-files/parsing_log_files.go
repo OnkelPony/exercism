@@ -1,7 +1,11 @@
 package parsinglogfiles
 
+import "regexp"
+
+var re = regexp.MustCompile(`^\[(TRC|DBG|INF|WRN|ERR|FTL)\]`)
+
 func IsValidLine(text string) bool {
-	panic("Please implement the IsValidLine function")
+	return re.MatchString(text)
 }
 
 func SplitLogLine(text string) []string {
