@@ -15,20 +15,30 @@ type DaysPeriod struct {
 
 // Filter returns the records for which the predicate function returns true.
 func Filter(in []Record, predicate func(Record) bool) []Record {
-	panic("Please implement the Filter function")
+	var results []Record
+	for _, r := range in {
+		if predicate(r) {
+			results = append(results, r)
+		}
+	}
+	return results
 }
 
 // ByDaysPeriod returns predicate function that returns true when
 // the day of the record is inside the period of day and false otherwise.
 func ByDaysPeriod(p DaysPeriod) func(Record) bool {
-	panic("Please implement the ByDaysPeriod function")
+	return func(r Record) bool {
+		return p.From <= r.Day && r.Day <= p.To
+	}
 }
 
 // ByCategory returns predicate function that returns true when
 // the category of the record is the same as the provided category
 // and false otherwise.
 func ByCategory(c string) func(Record) bool {
-	panic("Please implement the ByCategory function")
+	return func(r Record) bool {
+		return c == r.Category
+	}
 }
 
 // TotalByPeriod returns total amount of expenses for records
