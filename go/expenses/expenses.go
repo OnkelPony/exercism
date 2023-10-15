@@ -1,5 +1,7 @@
 package expenses
 
+import "errors"
+
 // Record represents an expense record.
 type Record struct {
 	Day      int
@@ -44,7 +46,13 @@ func ByCategory(c string) func(Record) bool {
 // TotalByPeriod returns total amount of expenses for records
 // inside the period p.
 func TotalByPeriod(in []Record, p DaysPeriod) float64 {
-	panic("Please implement the TotalByPeriod function")
+	var result float64
+	for _, r := range in {
+		if r.Day >= p.From && r.Day <= p.To {
+			result += r.Amount
+		}
+	}
+	return result
 }
 
 // CategoryExpenses returns total amount of expenses for records
@@ -52,5 +60,9 @@ func TotalByPeriod(in []Record, p DaysPeriod) float64 {
 // An error must be returned only if there are no records in the list that belong
 // to the given category, regardless of period of time.
 func CategoryExpenses(in []Record, p DaysPeriod, c string) (float64, error) {
-	panic("Please implement the CategoryExpenses function")
+	results := Filter(in, ByCategory(c))
+	if  len(results) == 0 {
+		return 0, errors.New("no records in category")
+	}
+	return TotalByPeriod(results, p ), nil
 }
