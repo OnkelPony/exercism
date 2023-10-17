@@ -1,57 +1,25 @@
 package sublist
 
-// Relation type is defined in relations.go file.
-
-func Sublist(l1, l2 []int) Relation {
-	if isEqual(l1, l2) {
-		return RelationEqual
-	} else if isSublist(l1, l2) {
-		return RelationSublist
-	} else if isSuperlist(l1, l2) {
+func Sublist(s1, s2 []int) Relation {
+	if contains(s1, s2) {
+		if len(s1) == len(s2) {
+			return RelationEqual
+		}
 		return RelationSuperlist
-	} else {
-		return RelationUnequal
+	} else if contains(s2, s1) {
+		return RelationSublist
 	}
+	return RelationUnequal
 }
 
-func isEqual(l1, l2 []int) bool {
-	if len(l1) != len(l2) {
-		return false
-	}
-	for i := range l1 {
-		if l1[i] != l2[i] {
-			return false
+func contains(s1, s2 []int) bool {
+	i1, i2 := 0, 0
+	for ; i1 < len(s1) && i2 < len(s2); i1++ {
+		if s1[i1] == s2[i2] {
+			i2++
+		} else {
+			i1, i2 = i1-i2, 0
 		}
 	}
-	return true
-}
-
-func isSublist(l1, l2 []int) bool {
-	equals := false
-	short := len(l1)
-	long := len(l2)
-	if short > long {
-		return false
-	}	
-	if short == 0 {
-		return true
-	}
-	for o := 0; o <= long-short; o++ {
-		for i := 0; i < short; i++ {
-			if l1[i] == l2[o+i] {
-				equals = true
-			} else {
-				equals = false
-				break
-			}
-		}
-		if equals {
-			return equals
-		}
-	}
-	return false
-}
-
-func isSuperlist(l1, l2 []int) bool {
-	return isSublist(l2, l1)
+	return i2 == len(s2)
 }
