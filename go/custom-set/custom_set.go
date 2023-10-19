@@ -8,6 +8,7 @@ package stringset
 // Format the empty set as {}.
 
 // Define the Set type here.
+type Set map[string]struct{}
 
 func New() Set {
 	panic("Please implement the New function")
