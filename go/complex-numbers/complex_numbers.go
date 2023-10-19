@@ -1,5 +1,7 @@
 package complexnumbers
 
+import "math"
+
 // Define the Number type here.
 type Number struct {
 	real float64
@@ -37,13 +39,15 @@ func (n1 Number) Divide(n2 Number) Number {
 }
 
 func (n Number) Conjugate() Number {
-	panic("Please implement the Conjugate method")
+	return Number{n.real, -n.imag}
 }
 
 func (n Number) Abs() float64 {
-	panic("Please implement the Abs method")
+	return math.Sqrt(n.real*n.real + n.imag*n.imag)
 }
 
 func (n Number) Exp() Number {
-	panic("Please implement the Exp method")
+	real := math.Pow(math.E, n.real) * math.Cos(n.imag)
+	imag := math.Pow(math.E, n.real) * math.Sin(n.imag)
+	return Number{real, imag}
 }
