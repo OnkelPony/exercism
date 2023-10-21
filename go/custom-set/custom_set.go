@@ -1,5 +1,7 @@
 package stringset
 
+import "fmt"
+
 // Implement Set as a collection of unique string values.
 //
 // For Set.String, use '{' and '}', output elements as double-quoted strings
@@ -11,31 +13,51 @@ package stringset
 type Set map[string]struct{}
 
 func New() Set {
-	panic("Please implement the New function")
+	return make(Set)
 }
 
 func NewFromSlice(l []string) Set {
-	panic("Please implement the NewFromSlice function")
+	result := New()
+	for _, s := range l {
+		result.Add(s)
+	}
+	return result
 }
 
 func (s Set) String() string {
-	panic("Please implement the String function")
+	var i int
+	result := "{"
+	for k := range s {
+		i++
+		result += fmt.Sprintf("\"%v\"", k)
+		if i < len(s) {
+			result += ", "
+		}
+	}
+	result += "}"
+	return result
 }
 
 func (s Set) IsEmpty() bool {
-	panic("Please implement the IsEmpty function")
+	return len(s) == 0
 }
 
 func (s Set) Has(elem string) bool {
-	panic("Please implement the Has function")
+	_, ok := s[elem]
+	return ok
 }
 
 func (s Set) Add(elem string) {
-	panic("Please implement the Add function")
+	s[elem] = struct{}{}
 }
 
 func Subset(s1, s2 Set) bool {
-	panic("Please implement the Subset function")
+	for k := range s1 {
+		if !s2.Has(k) {
+			return false
+		}
+	}
+	return true
 }
 
 func Disjoint(s1, s2 Set) bool {
@@ -43,7 +65,7 @@ func Disjoint(s1, s2 Set) bool {
 }
 
 func Equal(s1, s2 Set) bool {
-	panic("Please implement the Equal function")
+	return Subset(s1, s2) && len(s1) == len(s2)
 }
 
 func Intersection(s1, s2 Set) Set {
