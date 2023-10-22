@@ -1,6 +1,8 @@
 package stringset
 
-import "fmt"
+import (
+	"strings"
+)
 
 // Implement Set as a collection of unique string values.
 //
@@ -25,17 +27,19 @@ func NewFromSlice(l []string) Set {
 }
 
 func (s Set) String() string {
-	var i int
-	result := "{"
+	var out strings.Builder
+	out.WriteByte('{')
+	len := len(s)
 	for k := range s {
-		i++
-		result += fmt.Sprintf("\"%v\"", k)
-		if i < len(s) {
-			result += ", "
+		out.WriteByte('"')
+		out.WriteString(k)
+		out.WriteByte('"')
+		if len--; len > 0 {
+			out.WriteString(", ")
 		}
 	}
-	result += "}"
-	return result
+	out.WriteByte('}')
+	return out.String()
 }
 
 func (s Set) IsEmpty() bool {
@@ -61,7 +65,7 @@ func Subset(s1, s2 Set) bool {
 }
 
 func Disjoint(s1, s2 Set) bool {
-	panic("Please implement the Disjoint function")
+	return len(Intersection(s1, s2)) == 0
 }
 
 func Equal(s1, s2 Set) bool {
@@ -69,13 +73,28 @@ func Equal(s1, s2 Set) bool {
 }
 
 func Intersection(s1, s2 Set) Set {
-	panic("Please implement the Intersection function")
+	result := New()
+	for k := range s1 {
+		if s2.Has(k) {
+			result.Add(k)
+		}
+	}
+	return result
 }
 
 func Difference(s1, s2 Set) Set {
-	panic("Please implement the Difference function")
+	result := New()
+	for s := range s1 {
+		if !s2.Has(s) {
+			result.Add(s)
+		}
+	}
+	return result
 }
 
 func Union(s1, s2 Set) Set {
-	panic("Please implement the Union function")
+	for s := range s1 {
+		s2.Add(s)
+	}
+	return s2
 }
