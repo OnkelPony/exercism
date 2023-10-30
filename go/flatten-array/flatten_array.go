@@ -1,16 +1,16 @@
 package flatten
 
-import "reflect"
+// Flatten expects an (nested) slice / array and returns the flattened slice
+func Flatten(arr interface{}) []interface{} {
+	result := []interface{}{}
 
-func Flatten(nested interface{}) []interface{} {
-	var result []interface{}
-	value := reflect.ValueOf(nested)
-	if value.Kind() == reflect.Slice {
-		for i := 0; i < value.Len(); i++ {
-			result = append(result, Flatten(value.Index(i).Interface())...)
+	switch elem := arr.(type) {
+	case []interface{}:
+		for _, v := range elem {
+			result = append(result, Flatten(v)...)
 		}
-	} else {
-		result = append(result, nested)
+	case interface{}:
+		result = append(result, elem)
 	}
 	return result
 }
