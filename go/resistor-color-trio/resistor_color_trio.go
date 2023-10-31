@@ -20,7 +20,21 @@ var codes = map[string]int{
 // (e.g. "33 ohms", "470 kiloohms").
 func Label(colors []string) string {
 	value := (10*codes[colors[0]] + codes[colors[1]]) * tenPow(codes[colors[2]])
-	return strconv.Itoa(value) + " ohms"
+	ohms := "ohms"
+	switch {
+	case value == 0:
+	case value%1_000_000_000 == 0:
+		ohms = "gigaohms"
+		value /= 1_000_000_000
+	case value%1_000_000 == 0:
+		ohms = "megaohms"
+		value /= 1_000_000
+	case value%1_000 == 0:
+		ohms = "kiloohms"
+		value /= 1_000
+	default:
+	}
+	return strconv.Itoa(value) + " " + ohms
 }
 
 func tenPow(n int) int {
