@@ -16,7 +16,11 @@ func Gen(char byte) (string, error) {
 	}
 	for i := range result {
 		for j := range result[i] {
-			result[i][j] = ' '
+			if i+j == int(char-'A') {
+				result[i][j] = '#'
+			} else {
+				result[i][j] = ' '
+			}
 		}
 	}
 	return string(bytes.Join(result, []byte("\n"))), nil
