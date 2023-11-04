@@ -7,21 +7,29 @@ import (
 
 func Gen(char byte) (string, error) {
 	if char < 'A' || char > 'Z' {
-		return "", fmt.Errorf("Invalid input character")
+		return "", fmt.Errorf("invalid input character")
 	}
 	size := int(char-'A')*2 + 1
-	result := make([][]byte, size)
-	for i := range result {
-		result[i] = make([]byte, size)
-	}
-	for i := range result {
-		for j := range result[i] {
-			if i+j == int(char-'A') {
-				result[i][j] = '#'
+	var buf bytes.Buffer
+	for i := 0; i < size; i++ {
+		for j := 0; j < size; j++ {
+			diff := size/2 - abs(i-size/2)
+			if abs(j-size/2) == diff {
+				buf.WriteByte(byte('A' + diff))
 			} else {
-				result[i][j] = ' '
+				buf.WriteByte(' ')
 			}
 		}
+		if i < size-1 {
+			buf.WriteByte('\n')
+		}
 	}
-	return string(bytes.Join(result, []byte("\n"))), nil
+	return buf.String(), nil
+}
+
+func abs(n int) int {
+	if n < 0 {
+		return -n
+	}
+	return n
 }
