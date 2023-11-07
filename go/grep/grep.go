@@ -24,15 +24,19 @@ func findInfile(pattern string, flags []string, f string) []string {
 	defer file.Close()
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
-		if strings.Contains(scanner.Text(), pattern) {
-			line := scanner.Text()
-			if slices.Contains(flags, "-n") {
-				line = fmt.Sprintf("%d:%s", lineNum+1, line)
-			}
+		line := scanner.Text()
+		if slices.Contains(flags, "-i") {
+			line = strings.ToLower(line)
+			pattern = strings.ToLower(pattern)
+		}
+		if strings.Contains(line, pattern) {
 			if slices.Contains(flags, "-l") && !slices.Contains(result, f) {
 				result = append(result, f)
+			}
+			if slices.Contains(flags, "-n") {
+				result = append(result, fmt.Sprintf("%d:%s", lineNum+1, scanner.Text()))
 			} else {
-				result = append(result, line)
+				result = append(result, scanner.Text())
 			}
 		}
 		lineNum++
