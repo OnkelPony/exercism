@@ -29,11 +29,10 @@ func findInfile(pattern string, flags []string, f string) []string {
 			line = strings.ToLower(line)
 			pattern = strings.ToLower(pattern)
 		}
-		if strings.Contains(line, pattern) {
+		if slices.Contains(flags, "-v") != strings.Contains(line, pattern) {
 			if slices.Contains(flags, "-l") && !slices.Contains(result, f) {
 				result = append(result, f)
-			}
-			if slices.Contains(flags, "-n") {
+			} else if slices.Contains(flags, "-n") {
 				result = append(result, fmt.Sprintf("%d:%s", lineNum+1, scanner.Text()))
 			} else {
 				result = append(result, scanner.Text())
