@@ -28,21 +28,20 @@ func Search(pattern string, flags, files []string) []string {
 		moreFiles: len(files) > 1,
 	}
 	for _, f := range files {
-		found := findInfile(pattern, p, f)
+		found := findInFile(pattern, p, f)
 		result = append(result, found...)
 	}
 	return result
 }
 
-func findInfile(pattern string, p Params, f string) []string {
+func findInFile(pattern string, p Params, f string) []string {
 	var result []string
 	var outLine string
-	var lineNum int
 	file, _ := os.Open(f)
 	defer file.Close()
 	scanner := bufio.NewScanner(file)
 	var matches bool
-	for scanner.Scan() {
+	for lineNum := 1; scanner.Scan(); lineNum++ {
 		inLine := scanner.Text()
 		if p.insensitiveCase {
 			inLine = strings.ToLower(inLine)
@@ -59,7 +58,7 @@ func findInfile(pattern string, p Params, f string) []string {
 				result = append(result, f)
 				break
 			} else if p.numberedLines {
-				outLine = fmt.Sprintf("%d:%s", lineNum+1, scanner.Text())
+				outLine = fmt.Sprintf("%d:%s", lineNum, scanner.Text())
 			} else {
 				outLine = scanner.Text()
 			}
@@ -68,7 +67,6 @@ func findInfile(pattern string, p Params, f string) []string {
 			}
 			result = append(result, outLine)
 		}
-		lineNum++
 	}
 	return result
 }
