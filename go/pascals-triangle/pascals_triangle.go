@@ -10,7 +10,7 @@ func Triangle(n int) [][]int {
 			if j == 0 || j == i {
 				result[i][j] = 1
 			} else {
-				result[i][j] = result[i - 1][j-1] + result[i -1][j]
+				result[i][j] = result[i-1][j-1] + result[i-1][j]
 			}
 		}
 	}
