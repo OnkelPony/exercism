@@ -13,6 +13,8 @@ func Score(dice []int, category string) int {
 	switch category {
 	case "yacht":
 		return yachtValue(dice)
+	case "choice":
+		return choiceValue(dice)
 	default:
 		categoryValue, ok := categoryValues[category]
 		if ok {
@@ -20,6 +22,14 @@ func Score(dice []int, category string) int {
 		}
 	}
 	return 0
+}
+
+func choiceValue(dice []int) int {
+	var result int
+	for _, v := range dice {
+		result += v
+	}
+	return result
 }
 
 func yachtValue(dice []int) int {
