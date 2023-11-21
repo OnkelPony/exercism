@@ -10,11 +10,25 @@ var categoryValues = map[string]int{
 }
 
 func Score(dice []int, category string) int {
-	categoryValue, ok := categoryValues[category]
-	if ok {
-		return dicesValue(dice, categoryValue)
+	switch category {
+	case "yacht":
+		return yachtValue(dice)
+	default:
+		categoryValue, ok := categoryValues[category]
+		if ok {
+			return dicesValue(dice, categoryValue)
+		}
 	}
 	return 0
+}
+
+func yachtValue(dice []int) int {
+	for i := 1; i < len(dice); i++ {
+		if dice[i] != dice[0] {
+			return 0
+		}
+	}
+	return 50
 }
 
 func dicesValue(dice []int, categoryValue int) int {
