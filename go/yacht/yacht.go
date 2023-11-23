@@ -15,10 +15,25 @@ func Score(dice []int, category string) int {
 		return yachtValue(dice)
 	case "choice":
 		return choiceValue(dice)
+	case "four of a kind":
+		return fourOfAKindValue(dice)
 	default:
 		categoryValue, ok := categoryValues[category]
 		if ok {
 			return dicesValue(dice, categoryValue)
+		}
+	}
+	return 0
+}
+
+func fourOfAKindValue(dice []int) int {
+	result := make(map[int]int)
+	for _, v := range dice {
+		result[v]++
+	}
+	for v, c := range result {
+		if c >= 4 {
+			return 4 * v
 		}
 	}
 	return 0
