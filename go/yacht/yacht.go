@@ -17,6 +17,8 @@ func Score(dice []int, category string) int {
 		return choiceValue(dice)
 	case "four of a kind":
 		return fourOfAKindValue(dice)
+	case "full house":
+		return fullHouseValue(dice)
 	default:
 		categoryValue, ok := categoryValues[category]
 		if ok {
@@ -26,12 +28,32 @@ func Score(dice []int, category string) int {
 	return 0
 }
 
-func fourOfAKindValue(dice []int) int {
-	result := make(map[int]int)
+func fullHouseValue(dice []int) int {
+	var result int
+	diceCombination := make(map[int]int)
 	for _, v := range dice {
-		result[v]++
+		diceCombination[v]++
 	}
-	for v, c := range result {
+	if len(diceCombination) != 2 {
+		return 0
+	}
+	for v, c := range diceCombination {
+		if c == 3 {
+			result += 3 * v
+		}
+		if c == 2 {
+			result += 2 * v
+		}
+	}
+	return result
+}
+
+func fourOfAKindValue(dice []int) int {
+	diceCombination := make(map[int]int)
+	for _, v := range dice {
+		diceCombination[v]++
+	}
+	for v, c := range diceCombination {
 		if c >= 4 {
 			return 4 * v
 		}
