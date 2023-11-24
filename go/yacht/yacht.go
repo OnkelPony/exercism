@@ -1,5 +1,7 @@
 package yacht
 
+import "reflect"
+
 var categoryValues = map[string]int{
 	"ones":   1,
 	"twos":   2,
@@ -19,11 +21,26 @@ func Score(dice []int, category string) int {
 		return fourOfAKindValue(dice)
 	case "full house":
 		return fullHouseValue(dice)
+	case "little straight":
+		return littleStraightValue(dice)
 	default:
 		categoryValue, ok := categoryValues[category]
 		if ok {
 			return dicesValue(dice, categoryValue)
 		}
+	}
+	return 0
+}
+
+func littleStraightValue(dice []int) int {
+	littleStraight := map[int]int{1: 1, 2: 1, 3: 1, 4: 1, 5: 1}
+	//bigStraight := map[int]int{2: 1, 3: 1, 4: 1, 5: 1, 6: 1}
+	diceCombination := make(map[int]int)
+	for _, v := range dice {
+		diceCombination[v]++
+	}
+	if reflect.DeepEqual(diceCombination, littleStraight){// || reflect.DeepEqual(diceCombination, bigStraight) {
+		return 30
 	}
 	return 0
 }
