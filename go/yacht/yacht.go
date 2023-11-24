@@ -22,7 +22,11 @@ func Score(dice []int, category string) int {
 	case "full house":
 		return fullHouseValue(dice)
 	case "little straight":
-		return littleStraightValue(dice)
+		straight := map[int]int{1: 1, 2: 1, 3: 1, 4: 1, 5: 1}
+		return straightValue(dice, straight)
+	case "big straight":
+		straight := map[int]int{2: 1, 3: 1, 4: 1, 5: 1, 6: 1}
+		return straightValue(dice, straight)
 	default:
 		categoryValue, ok := categoryValues[category]
 		if ok {
@@ -32,14 +36,12 @@ func Score(dice []int, category string) int {
 	return 0
 }
 
-func littleStraightValue(dice []int) int {
-	littleStraight := map[int]int{1: 1, 2: 1, 3: 1, 4: 1, 5: 1}
-	//bigStraight := map[int]int{2: 1, 3: 1, 4: 1, 5: 1, 6: 1}
+func straightValue(dice []int, straight map[int]int) int {
 	diceCombination := make(map[int]int)
 	for _, v := range dice {
 		diceCombination[v]++
 	}
-	if reflect.DeepEqual(diceCombination, littleStraight){// || reflect.DeepEqual(diceCombination, bigStraight) {
+	if reflect.DeepEqual(diceCombination, straight) {
 		return 30
 	}
 	return 0
