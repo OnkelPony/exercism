@@ -37,7 +37,14 @@ func Verse(v int) string {
 }
 
 func Verses(start, end int) string {
-	panic("Please implement the Verses function")
+	var result string
+	for i := start; i <= end; i++ {
+		result += Verse(i)
+		if i != end {
+			result += "\n\n"
+		}
+	}
+	return result
 }
 
 func Song() string {
