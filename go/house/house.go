@@ -1,6 +1,9 @@
 package house
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 type SubjectDoing struct {
 	S string
@@ -23,28 +26,29 @@ var verses = map[int]SubjectDoing{
 }
 
 func Verse(v int) string {
-	var result string
-	result = fmt.Sprintf("This is the %s", verses[v].S)
+	var builder strings.Builder
+	builder.WriteString(fmt.Sprintf("This is the %s", verses[v].S))
 	if v > 1 {
-		result += "\n"
+		builder.WriteString("\n")
 	}
 	for i := v; i > 1; i-- {
-		result += fmt.Sprintf("that %s the %s", verses[i].D, verses[i-1].S)
+		builder.WriteString(fmt.Sprintf("that %s the %s", verses[i].D, verses[i-1].S))
 		if i > 2 {
-			result += "\n"
+			builder.WriteString("\n")
 		}
 	}
-	result += "."
-	return result
+	builder.WriteString(".")
+	return builder.String()
 }
 
+
 func Song() string {
-	var result string
+	var builder strings.Builder
 	for i := 1; i <= len(verses); i++ {
-		result += Verse(i)
+		builder.WriteString(Verse(i))
 		if i < len(verses) {
-			result += "\n\n"
+			builder.WriteString("\n\n")
 		}
 	}
-	return result
+	return builder.String()
 }
