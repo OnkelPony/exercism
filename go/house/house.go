@@ -8,7 +8,8 @@ type SubjectDoing struct {
 }
 
 var verses = map[int]SubjectDoing{
-	2:  {S: "malt", D: "lay"},
+	1:  {S: "house that Jack built", D: ""},
+	2:  {S: "malt", D: "lay in"},
 	3:  {S: "rat", D: "ate"},
 	4:  {S: "cat", D: "killed"},
 	5:  {S: "dog", D: "worried"},
@@ -23,17 +24,27 @@ var verses = map[int]SubjectDoing{
 
 func Verse(v int) string {
 	var result string
-	if v == 1 {
-		return "This is the house that Jack built."
+	result = fmt.Sprintf("This is the %s", verses[v].S)
+	if v > 1 {
+		result += "\n"
 	}
-	result = fmt.Sprintf("This is the %s\n", verses[v].S)
-	for i := v; i > 2; i-- {
-		result += fmt.Sprintf("that %s the %s\n", verses[i].D, verses[i-1].S)
+	for i := v; i > 1; i-- {
+		result += fmt.Sprintf("that %s the %s", verses[i].D, verses[i-1].S)
+		if i > 2 {
+			result += "\n"
+		}
 	}
-	result += "that lay in the house that Jack built."
+	result += "."
 	return result
 }
 
 func Song() string {
-	panic("Please implement the Song function")
+	var result string
+	for i := 1; i <= len(verses); i++ {
+		result += Verse(i)
+		if i < len(verses) {
+			result += "\n\n"
+		}
+	}
+	return result
 }
