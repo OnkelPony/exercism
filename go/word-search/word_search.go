@@ -15,5 +15,8 @@ func Solve(words []string, puzzle []string) (map[string][2][2]int, error) {
 }
 
 func findWord(word string, puzzle []string) [2][2]int{
+	width := len(puzzle[0])
+	height := len(puzzle)
+	
 	return [2][2]int{{-1, -1}, {-1, -1}} 
 }
