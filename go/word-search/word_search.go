@@ -8,13 +8,13 @@ func Solve(words []string, puzzle []string) (map[string][2][2]int, error) {
 	for _, word := range words {
 		result[word] = findWord(word, puzzle)
 		if result[word] == [2][2]int{{-1, -1}, {-1, -1}} {
-		err = errors.New("word not found")
+			err = errors.New("word not found")
 		}
 	}
 	return result, err
 }
 
-func findWord(word string, puzzle []string) [2][2]int{
+func findWord(word string, puzzle []string) [2][2]int {
 	width := len(puzzle[0])
 	height := len(puzzle)
 	initialPositions := [][2]int{}
@@ -26,6 +26,22 @@ func findWord(word string, puzzle []string) [2][2]int{
 		}
 	}
 	for _, position := range initialPositions {
-		
-	return [2][2]int{{-1, -1}, {-1, -1}} 
+		endPosition := scanEast(word, puzzle, position)
+		if endPosition != [2]int{-1, -1} {
+			return [2][2]int{position, endPosition}
+		}
+	}
+	return [2][2]int{{-1, -1}, {-1, -1}}
+}
+
+func scanEast(word string, puzzle []string, position [2]int) [2]int {
+	if len(word) <= len(puzzle[0])-position[0] {
+		for i, v := range word {
+			if v != rune(puzzle[position[1]][position[0]+i]) {
+				return [2]int{-1, -1}
+			}
+		}
+		return [2]int{position[1], position[0] + len(word) - 1}
+	}
+	return [2]int{-1, -1}
 }
