@@ -35,13 +35,13 @@ func findWord(word string, puzzle []string) [2][2]int {
 }
 
 func scanEast(word string, puzzle []string, position [2]int) [2]int {
-	if len(word) <= len(puzzle[0])-position[0] {
+	if len(word) <= len(puzzle[0])-position[1] {
 		for i, v := range word {
-			if v != rune(puzzle[position[1]][position[0]+i]) {
+			if v != rune(puzzle[position[0]][position[1]+i]) {
 				return [2]int{-1, -1}
 			}
 		}
-		return [2]int{position[1], position[0] + len(word) - 1}
+		return [2]int{position[1] + len(word) - 1, position[0]}
 	}
 	return [2]int{-1, -1}
 }
