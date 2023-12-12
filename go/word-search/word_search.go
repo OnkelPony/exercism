@@ -28,7 +28,7 @@ func findWord(word string, puzzle []string) [2][2]int {
 	for _, position := range initialPositions {
 		endPosition := scanEast(word, puzzle, position)
 		if endPosition != [2]int{-1, -1} {
-			return [2][2]int{position, endPosition}
+			return [2][2]int{{position[1], position[0]}, endPosition}
 		}
 	}
 	return [2][2]int{{-1, -1}, {-1, -1}}
