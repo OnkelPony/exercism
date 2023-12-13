@@ -2,6 +2,12 @@ package wordsearch
 
 import "errors"
 
+type Position struct {
+	x int
+	y int
+}
+var invalidPosition = Position{x: -1, y: -1}
+
 func Solve(words []string, puzzle []string) (map[string][2][2]int, error) {
 	result := make(map[string][2][2]int)
 	var err error
@@ -17,31 +23,31 @@ func Solve(words []string, puzzle []string) (map[string][2][2]int, error) {
 func findWord(word string, puzzle []string) [2][2]int {
 	width := len(puzzle[0])
 	height := len(puzzle)
-	initialPositions := [][2]int{}
+	initialPositions := []Position{}
 	for i := 0; i < height; i++ {
 		for j := 0; j < width; j++ {
 			if puzzle[i][j] == word[0] {
-				initialPositions = append(initialPositions, [2]int{i, j})
+				initialPositions = append(initialPositions, Position{x: j, y: i})
 			}
 		}
 	}
 	for _, position := range initialPositions {
 		endPosition := scanEast(word, puzzle, position)
-		if endPosition != [2]int{-1, -1} {
-			return [2][2]int{{position[1], position[0]}, endPosition}
+		if endPosition != invalidPosition {
+			return [2][2]int{{position.x, position.y}, {endPosition.x, endPosition.y}}
 		}
 	}
 	return [2][2]int{{-1, -1}, {-1, -1}}
 }
 
-func scanEast(word string, puzzle []string, position [2]int) [2]int {
-	if len(word) <= len(puzzle[0])-position[1] {
+func scanEast(word string, puzzle []string, position Position) Position {
+	if len(word) <= len(puzzle[0])-position.x {
 		for i, v := range word {
-			if v != rune(puzzle[position[0]][position[1]+i]) {
-				return [2]int{-1, -1}
+			if v != rune(puzzle[position.y][position.x+i]) {
+				return invalidPosition
 			}
 		}
-		return [2]int{position[1] + len(word) - 1, position[0]}
+		return Position{position.x + len(word) - 1, position.y}
 	}
-	return [2]int{-1, -1}
+	return invalidPosition
 }
