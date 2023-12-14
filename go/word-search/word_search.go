@@ -6,6 +6,7 @@ type Position struct {
 	x int
 	y int
 }
+
 var invalidPosition = Position{x: -1, y: -1}
 
 func Solve(words []string, puzzle []string) (map[string][2][2]int, error) {
@@ -31,23 +32,28 @@ func findWord(word string, puzzle []string) [2][2]int {
 			}
 		}
 	}
-	for _, position := range initialPositions {
-		endPosition := scanEast(word, puzzle, position)
+	for _, startPosition := range initialPositions {
+		endPosition := scanEast(word, puzzle, startPosition)
 		if endPosition != invalidPosition {
-			return [2][2]int{{position.x, position.y}, {endPosition.x, endPosition.y}}
+			return [2][2]int{{startPosition.x, startPosition.y}, {endPosition.x, endPosition.y}}
 		}
 	}
 	return [2][2]int{{-1, -1}, {-1, -1}}
 }
 
 func scanEast(word string, puzzle []string, position Position) Position {
-	if len(word) <= len(puzzle[0])-position.x {
-		for i, v := range word {
-			if v != rune(puzzle[position.y][position.x+i]) {
-				return invalidPosition
-			}
+	var result Position
+	direction := Position{x: 1, y: 0}
+	for i, v := range word {
+		x := position.x + i*direction.x
+		y := position.y + i*direction.y
+		if x < 0 || y < 0 || x > len(puzzle[0])-1 || y > len(puzzle)-1 || v != rune(puzzle[y][x]) {
+			result = invalidPosition
+			break
 		}
+	}
+	if result != invalidPosition {
 		return Position{position.x + len(word) - 1, position.y}
 	}
-	return invalidPosition
+	return result
 }
