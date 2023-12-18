@@ -43,17 +43,20 @@ func findWord(word string, puzzle []string) [2][2]int {
 
 func scanEast(word string, puzzle []string, position Position) Position {
 	var result Position
-	direction := Position{x: 0, y: 1}
-	for i, v := range word {
-		x := position.x + i*direction.x
-		y := position.y + i*direction.y
-		if x < 0 || y < 0 || x > len(puzzle[0])-1 || y > len(puzzle)-1 || v != rune(puzzle[y][x]) {
-			result = invalidPosition
-			break
+	var x, y int
+	directions := []Position{{0, 1},{1, 0}}
+	for _, direction := range directions {
+		for i, v := range word {
+			x = position.x + i*direction.x
+			y = position.y + i*direction.y
+			if x < 0 || y < 0 || x > len(puzzle[0])-1 || y > len(puzzle)-1 || v != rune(puzzle[y][x]) {
+				result = invalidPosition
+				break
+			}
 		}
-	}
-	if result != invalidPosition {
-		return Position{position.x + len(word) - 1, position.y} // adjust this to work with all directions
+		if result != invalidPosition {
+			return Position{x, y} // adjust this to work with all directions
+		}
 	}
 	return result
 }
