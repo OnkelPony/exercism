@@ -46,6 +46,7 @@ func scanEast(word string, puzzle []string, position Position) Position {
 	var x, y int
 	directions := []Position{{0, 1},{1, 0}}
 	for _, direction := range directions {
+		result = Position{0, 0}
 		for i, v := range word {
 			x = position.x + i*direction.x
 			y = position.y + i*direction.y
