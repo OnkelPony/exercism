@@ -1,6 +1,14 @@
 package linkedlist
 
 // Define the List and Element types here.
+type Element struct {
+	value int
+	next *Element
+}
+
+type List struct {
+	head *Element
+}
 
 func New(elements []int) *List {
 	panic("Please implement the New function")
