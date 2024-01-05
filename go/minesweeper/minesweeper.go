@@ -10,9 +10,21 @@ func Annotate(board []string) []string {
 	for row := range board {
 		var buf bytes.Buffer
 		for col := range board[row] {
-			buf.WriteByte(board[row][col])
+			if board[row][col] == ' ' {
+				buf.WriteByte(countMines(board, row, col))
+			} else {
+				buf.WriteByte(board[row][col])
+			}
 		}
 		result[row] = buf.String()
 	}
 	return result
+}
+
+func countMines(board []string, row, col int) byte{
+	var result int
+	if result == 0 {
+		return byte(' ')
+	}
+	return byte(result + 48)
 }
