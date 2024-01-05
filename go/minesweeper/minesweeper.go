@@ -23,6 +23,17 @@ func Annotate(board []string) []string {
 
 func countMines(board []string, row, col int) byte{
 	var result int
+	directions := [][2]int{{-1, 0}, {-1, 1}, {0, 1}, {1, 1}, {1, 0}, {1, -1}, {0, -1}, {-1, -1}}
+	h := len(board)
+	w := len(board[0])
+	for _, direction := range directions {
+		position := [2]int{row + direction[0], col + direction[1]}
+		if position[0] >= 0 && position[0] < h && position[1] >= 0 && position[1] < w {
+			if board[position[0]][position[1]] == byte('*') {
+				result++
+			}
+		}
+	}
 	if result == 0 {
 		return byte(' ')
 	}
