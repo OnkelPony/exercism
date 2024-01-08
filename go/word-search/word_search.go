@@ -2,12 +2,8 @@ package wordsearch
 
 import "errors"
 
-type Position struct {
-	x int
-	y int
-}
-
-var invalidPosition = Position{x: -1, y: -1}
+type Position [2]int
+var invalidPosition = Position{-1, -1}
 
 func Solve(words []string, puzzle []string) (map[string][2][2]int, error) {
 	result := make(map[string][2][2]int)
@@ -26,21 +22,17 @@ func findWord(word string, puzzle []string) [2][2]int {
 	for _, startPosition := range initialPositions {
 		endPosition := scanDirections(word, puzzle, startPosition)
 		if endPosition != invalidPosition {
-			return [2][2]int{{startPosition.x, startPosition.y}, {endPosition.x, endPosition.y}}
+			return [2][2]int{{startPosition[0], startPosition[1]}, {endPosition[0], endPosition[1]}}
 		}
 	}
 	return [2][2]int{{-1, -1}, {-1, -1}}
 }
 
 func findInitialPositions(puzzle []string, word string) []Position {
-	width := len(puzzle[0])
-	height := len(puzzle)
 	initialPositions := []Position{}
-	for i := 0; i < height; i++ {
-		for j := 0; j < width; j++ {
-			if puzzle[i][j] == word[0] {
-				initialPositions = append(initialPositions, Position{x: j, y: i})
-			}
+	for i := 0; i < len(puzzle); i++ {
+		for j := 0; j < len(puzzle[0]); j++ {
+				initialPositions = append(initialPositions, Position{j, i})
 		}
 	}
 	return initialPositions
@@ -53,8 +45,8 @@ func scanDirections(word string, puzzle []string, position Position) Position {
 	for _, direction := range directions {
 		found = true
 		for i, v := range word {
-			x = position.x + i*direction.x
-			y = position.y + i*direction.y
+			x = position[0] + i*direction[0]
+			y = position[1] + i*direction[1]
 			if x < 0 || y < 0 || x > len(puzzle[0])-1 || y > len(puzzle)-1 || v != rune(puzzle[y][x]) {
 				found = false
 				break
