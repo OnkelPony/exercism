@@ -29,10 +29,12 @@ func findWord(word string, puzzle []string) [2][2]int {
 }
 
 func findInitialPositions(puzzle []string, word string) []Position {
-	initialPositions := []Position{}
-	for i := 0; i < len(puzzle); i++ {
-		for j := 0; j < len(puzzle[0]); j++ {
-				initialPositions = append(initialPositions, Position{j, i})
+	initialPositions := make([]Position, len(puzzle) * len(puzzle[0]))
+	k := 0
+	for y := 0; y < len(puzzle); y++ {
+		for x := 0; x < len(puzzle[0]); x++ {
+				initialPositions[k] = Position{x, y}
+				k++
 		}
 	}
 	return initialPositions
