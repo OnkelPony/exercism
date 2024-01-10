@@ -3,6 +3,7 @@ package wordsearch
 import "errors"
 
 type Position [2]int
+
 var invalidPosition = Position{-1, -1}
 
 func Solve(words []string, puzzle []string) (map[string][2][2]int, error) {
@@ -18,26 +19,15 @@ func Solve(words []string, puzzle []string) (map[string][2][2]int, error) {
 }
 
 func findWord(word string, puzzle []string) [2][2]int {
-	initialPositions := findInitialPositions(puzzle, word)
-	for _, startPosition := range initialPositions {
-		endPosition := scanDirections(word, puzzle, startPosition)
-		if endPosition != invalidPosition {
-			return [2][2]int{{startPosition[0], startPosition[1]}, {endPosition[0], endPosition[1]}}
+	for y := 0; y < len(puzzle); y++ {
+		for x := 0; x < len(puzzle[0]); x++ {
+			endPosition := scanDirections(word, puzzle, Position{x, y})
+			if endPosition != invalidPosition {
+				return [2][2]int{Position{x, y}, {endPosition[0], endPosition[1]}}
+			}
 		}
 	}
 	return [2][2]int{{-1, -1}, {-1, -1}}
-}
-
-func findInitialPositions(puzzle []string, word string) []Position {
-	initialPositions := make([]Position, len(puzzle) * len(puzzle[0]))
-	k := 0
-	for y := 0; y < len(puzzle); y++ {
-		for x := 0; x < len(puzzle[0]); x++ {
-				initialPositions[k] = Position{x, y}
-				k++
-		}
-	}
-	return initialPositions
 }
 
 func scanDirections(word string, puzzle []string, position Position) Position {
