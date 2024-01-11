@@ -11,7 +11,7 @@ func Solve(words []string, puzzle []string) (map[string][2][2]int, error) {
 	var err error
 	for _, word := range words {
 		result[word] = findWord(word, puzzle)
-		if result[word] == [2][2]int{{-1, -1}, {-1, -1}} {
+		if result[word] == [2][2]int{invalidPosition, invalidPosition} {
 			err = errors.New("word not found")
 		}
 	}
@@ -27,25 +27,22 @@ func findWord(word string, puzzle []string) [2][2]int {
 			}
 		}
 	}
-	return [2][2]int{{-1, -1}, {-1, -1}}
+	return [2][2]int{invalidPosition, invalidPosition}
 }
 
 func scanDirections(word string, puzzle []string, position Position) Position {
-	var found bool
 	var x, y int
 	directions := []Position{{0, 1}, {-1, 1}, {-1, 0}, {-1, -1}, {0, -1}, {1, -1}, {1, 0}, {1, 1}}
 	for _, direction := range directions {
-		found = true
 		for i, v := range word {
 			x = position[0] + i*direction[0]
 			y = position[1] + i*direction[1]
 			if x < 0 || y < 0 || x > len(puzzle[0])-1 || y > len(puzzle)-1 || v != rune(puzzle[y][x]) {
-				found = false
 				break
 			}
-		}
-		if found {
-			return Position{x, y}
+			if i == len(word)-1 {
+				return Position{x, y}
+			}
 		}
 	}
 	return invalidPosition
