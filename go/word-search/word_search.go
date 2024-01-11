@@ -31,6 +31,9 @@ func findWord(word string, puzzle []string) [2][2]int {
 }
 
 func scanDirections(word string, puzzle []string, position Position) Position {
+	if word[0] != puzzle[position[1]][position[0]] {
+		return invalidPosition
+	}
 	var x, y int
 	directions := []Position{{0, 1}, {-1, 1}, {-1, 0}, {-1, -1}, {0, -1}, {1, -1}, {1, 0}, {1, 1}}
 	for _, direction := range directions {
