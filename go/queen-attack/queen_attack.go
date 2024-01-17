@@ -7,7 +7,10 @@ func CanQueenAttack(whitePosition, blackPosition string) (bool, error) {
 	if err != nil {
 		return false, err
 	}
-	return true, nil
+	if whitePosition[0] == blackPosition[0] || whitePosition[1] == blackPosition[1] {
+		return true, nil
+	}
+	return false, nil
 }
 
 func testValid(whitePosition, blackPosition string) error {
