@@ -7,21 +7,13 @@ func CanQueenAttack(whitePosition, blackPosition string) (bool, error) {
 	if err != nil {
 		return false, err
 	}
-	if whitePosition[0] == blackPosition[0] || whitePosition[1] == blackPosition[1] {
+	if whitePosition[0] == blackPosition[0] ||
+		whitePosition[1] == blackPosition[1] ||
+		whitePosition[0]-blackPosition[0] == whitePosition[1]-blackPosition[1] ||
+		whitePosition[0]-blackPosition[0] == blackPosition[1]-whitePosition[1] {
 		return true, nil
 	}
-	if isDiagonally(whitePosition, blackPosition) {
-		return true, nil
-	}
-
 	return false, nil
-}
-
-func isDiagonally(whitePosition, blackPosition string) bool {
-	if whitePosition[0] - blackPosition[0] == whitePosition[1] - blackPosition[1] {
-		return true
-	}
-	return false
 }
 
 func testValid(whitePosition, blackPosition string) error {
@@ -36,6 +28,6 @@ func testValid(whitePosition, blackPosition string) error {
 	}
 	if blackPosition == whitePosition {
 		return fmt.Errorf("white and black position can't be the same")
-    }
+	}
 	return nil
 }
