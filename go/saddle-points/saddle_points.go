@@ -18,13 +18,13 @@ func (m *Matrix) Saddle() []Pair {
 }
 
 func getColMins(m *Matrix) []Pair {
-	var result []Pair
+	result := make([]Pair, len((*m)[0]))
 	cols := m.Cols()
 	for i := range cols {
 		minValue := cols[i][0]
 		for j := range cols[i] {
-			if cols[i][j] < minValue {
-				result[i] = Pair{i, j}
+			if cols[i][j] <= minValue {
+				result[i] = Pair{i+1, j+1}
 			}
 		}
 	}
@@ -32,13 +32,13 @@ func getColMins(m *Matrix) []Pair {
 }
 
 func getRowMaxes(m *Matrix) []Pair {
-	var result []Pair
+	result := make([]Pair, len((*m)))
 	rows := m.Rows()
 	for j := range rows {
 		maxValue := rows[j][0]
 		for i := range rows[j] {
-			if rows[j][i] > maxValue {
-				result[j] = Pair{i, j}
+			if rows[j][i] >= maxValue {
+				result[j] = Pair{i+1, j+1}
 			}
 		}
 	}
