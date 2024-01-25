@@ -22,14 +22,14 @@ func getColMins(m *Matrix) []Pair {
 	cols := m.Cols()
 	for i := range cols {
 		minValue := cols[i][0]
+		for j := 1; j <  len(cols[i]); j++ {
+			if cols[i][j] < minValue {
+				minValue = cols[i][j]
+			}
+		}
 		for j := range cols[i] {
 			if cols[i][j] == minValue {
-				result = append(result,Pair{j+1, i+1})
-			} else if cols[i][j] < minValue {
-				minValue = cols[i][j]
-				result[i] = Pair{j+1, i+1}
-				result = result[:i+1]
-
+				result = append(result, Pair{j + 1, i + 1})
 			}
 		}
 	}
@@ -41,13 +41,14 @@ func getRowMaxes(m *Matrix) []Pair {
 	rows := m.Rows()
 	for j := range rows {
 		maxValue := rows[j][0]
+		for i := 1; i < len(rows[j]); i++ {
+			if rows[j][i] > maxValue {
+				maxValue = rows[j][i]
+			}
+		}
 		for i := range rows[j] {
 			if rows[j][i] == maxValue {
-				result = append(result, Pair{j+1, i+1})
-			} else if rows[j][i] > maxValue {
-				maxValue = rows[j][i]
-				result[j] = Pair{j+1, i+1}
-				result = result[:j+1]
+				result = append(result, Pair{j + 1, i + 1})
 			}
 		}
 	}

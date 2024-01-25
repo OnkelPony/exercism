@@ -11,6 +11,10 @@ type Matrix [][]int
 
 // New creates new matrix from string, where columns are separated by spaces and rows by newlines.
 func New(s string) (*Matrix, error) {
+	if s == "" {
+		result := make(Matrix, 0)
+		return &result, nil
+	}
 	lines := strings.Split(s, "\n")
 	result := make(Matrix, len(lines))
 	for i, line := range lines {
@@ -33,6 +37,9 @@ func New(s string) (*Matrix, error) {
 
 // Cols must return the results without affecting the matrix.
 func (m *Matrix) Cols() [][]int {
+	if len(*m) == 0 {
+		return [][]int{}
+	}
 	result := make(Matrix, len((*m)[0]))
 	for i := range (*m)[0] {
 		result[i] = make([]int, len(*m))
@@ -45,6 +52,9 @@ func (m *Matrix) Cols() [][]int {
 
 // Rows must return the results without affecting the matrix.
 func (m *Matrix) Rows() [][]int {
+	if len(*m) == 0 {
+		return [][]int{}
+	}
 	result := make(Matrix, len(*m))
 	for i := range *m {
 		result[i] = make([]int, len((*m)[i]))
