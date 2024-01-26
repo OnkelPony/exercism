@@ -1,56 +1,56 @@
 package matrix
 
-import "slices"
+import (
+	"math"
+	"strconv"
+	"strings"
+)
 
-// Define the Matrix and Pair types here.
+type Matrix [][]int
 type Pair [2]int
 
-func (m *Matrix) Saddle() []Pair {
-	var result []Pair
-	rowMaxes := getRowMaxes(m)
-	colMins := getColMins(m)
-	for _, rowMax := range rowMaxes {
-		if slices.Contains(colMins, rowMax) {
-			result = append(result, rowMax)
+func New(s string) (*Matrix, error) {
+	rows := strings.Split(s, "\n")
+	matrix := make(Matrix, len(rows))
+	for i, row := range rows {
+		cells := strings.Fields(row)
+		matrix[i] = make([]int, len(cells))
+		for j, cell := range cells {
+			val, _ := strconv.Atoi(cell)
+			matrix[i][j] = val
 		}
 	}
-	return result
+	return &matrix, nil
 }
 
-func getColMins(m *Matrix) []Pair {
-	var result []Pair
-	cols := m.Cols()
-	for i := range cols {
-		minValue := cols[i][0]
-		for j := 1; j <  len(cols[i]); j++ {
-			if cols[i][j] < minValue {
-				minValue = cols[i][j]
-			}
-		}
-		for j := range cols[i] {
-			if cols[i][j] == minValue {
-				result = append(result, Pair{j + 1, i + 1})
-			}
-		}
-	}
-	return result
-}
+func (m *Matrix) Saddle() (pairs []Pair) {
 
-func getRowMaxes(m *Matrix) []Pair {
-	var result []Pair
-	rows := m.Rows()
-	for j := range rows {
-		maxValue := rows[j][0]
-		for i := 1; i < len(rows[j]); i++ {
-			if rows[j][i] > maxValue {
-				maxValue = rows[j][i]
+	// Initialise rowMaxs and colMins
+	rowMaxs, colMins := make([]int, len(*m)), make([]int, len((*m)[0]))
+	for i := range colMins {
+		colMins[i] = math.MaxInt
+	}
+
+	// Update the max for each row and min for each column
+	for i, row := range *m {
+		for j, cell := range row {
+			if cell > rowMaxs[i] {
+				rowMaxs[i] = cell
 			}
-		}
-		for i := range rows[j] {
-			if rows[j][i] == maxValue {
-				result = append(result, Pair{j + 1, i + 1})
+			if cell < colMins[j] {
+				colMins[j] = cell
 			}
 		}
 	}
-	return result
+
+	// Return all cells that are both a row max and columm min
+	for i, row := range *m {
+		for j, cell := range row {
+			if cell == rowMaxs[i] && cell == colMins[j] {
+				pairs = append(pairs, Pair{i + 1, j + 1})
+			}
+		}
+	}
+	return pairs
+
 }
