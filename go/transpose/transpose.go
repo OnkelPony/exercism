@@ -17,18 +17,15 @@ func Transpose(input []string) []string {
 	for i := 0; i < h; i++ {
 		matrix[i] = make([]byte, w)
 		for j := 0; j < w; j++ {
-			if i >= len(input[j]) {
-				matrix[i][j] = ' '
-			} else {
+			if i < len(input[j]) {
 				matrix[i][j] = input[j][i]
 			}
 		}
 	}
 	result := make([]string, h)
 	for i := 0; i < h; i++ {
-		result[i] = string(matrix[i])
+		result[i] = strings.TrimRight(string(matrix[i]), "\x00")
+		result[i] = strings.ReplaceAll(result[i], "\x00", " ")
 	}
-	result[h-1] = strings.TrimRight(result[h-1], " ")
 	return result
-
 }
