@@ -1,17 +1,34 @@
 package transpose
 
+import "strings"
+
 func Transpose(input []string) []string {
 	if len(input) == 0 {
 		return input
 	}
-	h := 0 
-	// w := len(input)
+	h := 0
+	w := len(input)
 	for _, row := range input {
 		if len(row) > h {
 			h = len(row)
 		}
 	}
+	matrix := make([][]byte, h)
+	for i := 0; i < h; i++ {
+		matrix[i] = make([]byte, w)
+		for j := 0; j < w; j++ {
+			if i >= len(input[j]) {
+				matrix[i][j] = ' '
+			} else {
+				matrix[i][j] = input[j][i]
+			}
+		}
+	}
 	result := make([]string, h)
+	for i := 0; i < h; i++ {
+		result[i] = string(matrix[i])
+	}
+	result[h-1] = strings.TrimRight(result[h-1], " ")
 	return result
 
 }
