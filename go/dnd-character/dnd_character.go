@@ -1,5 +1,7 @@
 package dndcharacter
 
+import "math"
+
 type Character struct {
 	Strength     int
 	Dexterity    int
@@ -12,7 +14,7 @@ type Character struct {
 
 // Modifier calculates the ability modifier for a given ability score
 func Modifier(score int) int {
-	panic("Please implement the Modifier() function")
+	return int(math.Floor(float64(score - 10) / 2))
 }
 
 // Ability uses randomness to generate the score for an ability
