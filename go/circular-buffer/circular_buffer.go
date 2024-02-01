@@ -14,7 +14,7 @@ type Buffer struct {
 	items   []byte
 	toRead  int
 	toWrite int
-	used int
+	used    int
 }
 
 func NewBuffer(size int) *Buffer {
@@ -27,7 +27,7 @@ func NewBuffer(size int) *Buffer {
 }
 
 func (b *Buffer) ReadByte() (byte, error) {
-	if b.used == 0{
+	if b.used == 0 {
 		return 0, errors.New("buffer is empty")
 	}
 	result := b.items[b.toRead]
@@ -38,18 +38,22 @@ func (b *Buffer) ReadByte() (byte, error) {
 
 func (b *Buffer) WriteByte(c byte) error {
 	if b.used == len(b.items) {
-		return errors.New("buffer is empty")
+		return errors.New("buffer is full")
 	}
-	b.items[b.toWrite] = c
-	b.used++
-	b.toWrite = (b.toWrite + 1) % len(b.items)
+	b.Overwrite(c)
 	return nil
 }
 
 func (b *Buffer) Overwrite(c byte) {
-	panic("Please implement the Overwrite function")
+	b.items[b.toWrite] = c
+	b.toWrite = (b.toWrite + 1) % len(b.items)
+	if b.used == len(b.items) {
+		b.toRead = (b.toRead + 1) % len(b.items)
+	} else {
+		b.used++
+	}
 }
 
 func (b *Buffer) Reset() {
-	panic("Please implement the Reset function")
+	b.used = 0
 }
