@@ -12,14 +12,16 @@ type writeCounter struct {
 }
 
 // For the return of the function NewReadWriteCounter, you must also define a type that satisfies the ReadWriteCounter interface.
+type readWriteCounter struct {
+	ioReadWriter
+}
 
 func NewWriteCounter(writer io.Writer) WriteCounter {
-	panic("Please implement the NewWriterCounter function")
+	return &writeCounter{writer}
 }
 
 func NewReadCounter(reader io.Reader) ReadCounter {
-	panic("Please implement the NewReadCounter function")
-}
+return &readCounter{reader}}
 
 func NewReadWriteCounter(readwriter io.ReadWriter) ReadWriteCounter {
 	panic("Please implement the NewReadWriteCounter function")
@@ -34,7 +36,7 @@ func (rc *readCounter) ReadCount() (int64, int) {
 }
 
 func (wc *writeCounter) Write(p []byte) (int, error) {
-	panic("Please implement the Write function")
+	return wc.ioWriter.Write(p)
 }
 
 func (wc *writeCounter) WriteCount() (int64, int) {
