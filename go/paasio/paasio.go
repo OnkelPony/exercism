@@ -13,7 +13,7 @@ type writeCounter struct {
 
 // For the return of the function NewReadWriteCounter, you must also define a type that satisfies the ReadWriteCounter interface.
 type readWriteCounter struct {
-	ioReadWriter
+	ioReadWriter io.ReadWriter
 }
 
 func NewWriteCounter(writer io.Writer) WriteCounter {
@@ -21,14 +21,15 @@ func NewWriteCounter(writer io.Writer) WriteCounter {
 }
 
 func NewReadCounter(reader io.Reader) ReadCounter {
-return &readCounter{reader}}
+	return &readCounter{reader}
+}
 
 func NewReadWriteCounter(readwriter io.ReadWriter) ReadWriteCounter {
-	panic("Please implement the NewReadWriteCounter function")
+	return &readWriteCounter{readwriter}
 }
 
 func (rc *readCounter) Read(p []byte) (int, error) {
-	panic("Please implement the Read function")
+	return rc.ioReader.Read(p)
 }
 
 func (rc *readCounter) ReadCount() (int64, int) {
@@ -41,4 +42,24 @@ func (wc *writeCounter) Write(p []byte) (int, error) {
 
 func (wc *writeCounter) WriteCount() (int64, int) {
 	panic("Please implement the WriteCount function")
+}
+
+// Read implements ReadWriteCounter.
+func (rwc *readWriteCounter) Read(p []byte) (n int, err error) {
+	return rwc.ioReadWriter.Read(p)
+}
+
+// ReadCount implements ReadWriteCounter.
+func (rwc *readWriteCounter) ReadCount() (n int64, nops int) {
+	panic("unimplemented")
+}
+
+// Write implements ReadWriteCounter.
+func (rwc *readWriteCounter) Write(p []byte) (n int, err error) {
+	return rwc.ioReadWriter.Write(p)
+}
+
+// WriteCount implements ReadWriteCounter.
+func (rwc *readWriteCounter) WriteCount() (n int64, nops int) {
+	panic("unimplemented")
 }
