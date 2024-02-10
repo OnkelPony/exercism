@@ -41,12 +41,7 @@ func NewReadWriteCounter(readwriter io.ReadWriter) ReadWriteCounter {
 }
 
 func (rc *readCounter) Read(p []byte) (int, error) {
-	rc.mu.Lock()
-	defer rc.mu.Unlock()
-	n, err := rc.ioReader.Read(p)
-	rc.n += int64(n)
-	rc.nops++
-	return n, err
+	return read(rc, p)
 }
 
 func (rc *readCounter) ReadCount() (int64, int) {
@@ -72,12 +67,7 @@ func (wc *writeCounter) WriteCount() (int64, int) {
 
 // Read implements ReadWriteCounter.
 func (rwc *readWriteCounter) Read(p []byte) (int, error) {
-	rwc.mu.Lock()
-	defer rwc.mu.Unlock()
-	n, err := rwc.ioReadWriter.Read(p)
-	rwc.n += int64(n)
-	rwc.nops++
-	return n, err
+	return read(rwc, p)
 }
 
 // ReadCount implements ReadWriteCounter.
@@ -100,4 +90,13 @@ func (rwc *readWriteCounter) Write(p []byte) (int, error) {
 // WriteCount implements ReadWriteCounter.
 func (rwc *readWriteCounter) WriteCount() (int64, int) {
 	return rwc.ReadCount()
+}
+
+func read(rc *readCounter, p []byte) (int, error) {
+	rc.mu.Lock()
+	defer rc.mu.Unlock()
+	n, err := rc.ioReader.Read(p)
+	rc.n += int64(n)
+	rc.nops++
+	return n, err
 }
