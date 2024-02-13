@@ -10,22 +10,20 @@ type readCounter struct {
 	ioReader io.Reader
 	n        int64
 	nops     int
-	mu       sync.Mutex
+	mu       sync.RWMutex
 }
 
 type writeCounter struct {
 	ioWriter io.Writer
 	n        int64
 	nops     int
-	mu       sync.Mutex
+	mu       sync.RWMutex
 }
 
 // For the return of the function NewReadWriteCounter, you must also define a type that satisfies the ReadWriteCounter interface.
 type readWriteCounter struct {
-	ioReadWriter io.ReadWriter
-	n            int64
-	nops         int
-	mu           sync.Mutex
+	readCounter
+	writeCounter
 }
 
 func NewWriteCounter(writer io.Writer) WriteCounter {
@@ -37,7 +35,7 @@ func NewReadCounter(reader io.Reader) ReadCounter {
 }
 
 func NewReadWriteCounter(readwriter io.ReadWriter) ReadWriteCounter {
-	return &readWriteCounter{ioReadWriter: readwriter}
+	return &readWriteCounter{readCounter: readCounter{ioReader: readwriter}, writeCounter: writeCounter{ioWriter: readwriter}}
 }
 
 func (rc *readCounter) Read(p []byte) (int, error) {
@@ -50,8 +48,8 @@ func (rc *readCounter) Read(p []byte) (int, error) {
 }
 
 func (rc *readCounter) ReadCount() (int64, int) {
-	rc.mu.Lock()
-	defer rc.mu.Unlock()
+	rc.mu.RLock()
+	defer rc.mu.RUnlock()
 	return rc.n, rc.nops
 }
 
@@ -65,40 +63,28 @@ func (wc *writeCounter) Write(p []byte) (int, error) {
 }
 
 func (wc *writeCounter) WriteCount() (int64, int) {
-	wc.mu.Lock()
-	defer wc.mu.Unlock()
+	wc.mu.RLock()
+	defer wc.mu.RUnlock()
 	return wc.n, wc.nops
 }
 
 // Read implements ReadWriteCounter.
 func (rwc *readWriteCounter) Read(p []byte) (int, error) {
-	rwc.mu.Lock()
-	defer rwc.mu.Unlock()
-	n, err := rwc.ioReadWriter.Read(p)
-	rwc.n += int64(n)
-	rwc.nops++
-	return n, err
-}
+	return rwc.readCounter.Read(p)
+	}
 
 // ReadCount implements ReadWriteCounter.
 func (rwc *readWriteCounter) ReadCount() (int64, int) {
-	rwc.mu.Lock()
-	defer rwc.mu.Unlock()
-	return rwc.n, rwc.nops
+	return rwc.readCounter.ReadCount()
 }
 
 // Write implements ReadWriteCounter.
 func (rwc *readWriteCounter) Write(p []byte) (int, error) {
-	rwc.mu.Lock()
-	defer rwc.mu.Unlock()
-	n, err := rwc.ioReadWriter.Write(p)
-	rwc.n += int64(n)
-	rwc.nops++
-	return n, err
+	return rwc.writeCounter.Write(p)
 }
 
 // WriteCount implements ReadWriteCounter.
 func (rwc *readWriteCounter) WriteCount() (int64, int) {
-	return rwc.ReadCount()
+	return rwc.writeCounter.WriteCount()
 }
 

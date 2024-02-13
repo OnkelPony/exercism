@@ -291,3 +291,62 @@ type readWriter struct {
 	io.Reader
 	io.Writer
 }
+
+func BenchmarkReadCountConsistencyReadWriter(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+	  var rw nopReadWriter
+	  rc := NewReadWriteCounter(rw)
+  
+	  const numGo = 108
+	  const numBytes = 27
+	  p := make([]byte, numBytes)
+  
+	  wg := new(sync.WaitGroup)
+	  wg.Add(2 * numGo)
+	  start := make(chan struct{})
+	  for i := 0; i < numGo; i++ {
+		go func() {
+		  <-start
+		  rc.Read(p)
+		  wg.Done()
+		}()
+		go func() {
+		  <-start
+		  rc.ReadCount() // Measure the performance of ReadCount()
+		  wg.Done()
+		}()
+	  }
+	  close(start)
+	  wg.Wait()
+	}
+  }
+  
+  func BenchmarkWriteCountConsistencyReadWriter(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+	  var rw nopReadWriter
+	  wc := NewReadWriteCounter(rw)
+  
+	  const numGo = 108
+	  const numBytes = 27
+	  p := make([]byte, numBytes)
+  
+	  wg := new(sync.WaitGroup)
+	  wg.Add(2 * numGo)
+	  start := make(chan struct{})
+	  for i := 0; i < numGo; i++ {
+		go func() {
+		  <-start
+		  wc.Write(p)
+		  wg.Done()
+		}()
+		go func() {
+		  <-start
+		  wc.WriteCount() // Measure the performance of WriteCount()
+		  wg.Done()
+		}()
+	  }
+	  close(start)
+	  wg.Wait()
+	}
+  }
+  
