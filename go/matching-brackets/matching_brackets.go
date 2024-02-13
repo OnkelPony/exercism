@@ -3,7 +3,7 @@ package brackets
 func Bracket(input string) bool {
 	var stack []byte
 	for i := 0; i < len(input); i++ {
-		char := input[i] 
+		char := input[i]
 		switch char {
 		case '(', '[', '{':
 			stack = append(stack, char)
