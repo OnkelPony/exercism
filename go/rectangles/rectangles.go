@@ -44,9 +44,9 @@ func sidesExist(diagram []string, topLeft, botRight Point) bool {
 	}
 	for y := topLeft.y + 1; y < botRight.y; y++ {
 		if diagram[y][topLeft.x] != '+' &&
-			diagram[y][topLeft.x] != '-' ||
+			diagram[y][topLeft.x] != '|' ||
 			diagram[y][botRight.x] != '+' &&
-			diagram[y][botRight.x] != '-' {
+			diagram[y][botRight.x] != '|' {
 			return false
 		}
 	}
