@@ -33,10 +33,22 @@ func countRectangles(diagram []string, topLeft Point) int {
 	return result
 }
 
-func sidesExist(diagram []string, topLeft, botRight Point) bool{
-for x := topLeft.x + 1; x < botRight.x; x++ {
-	if diagram[topLeft.y][x] != '+' || diagram[topLeft.y][x] != '-' {
-		return false
+func sidesExist(diagram []string, topLeft, botRight Point) bool {
+	for x := topLeft.x + 1; x < botRight.x; x++ {
+		if diagram[topLeft.y][x] != '+' &&
+			diagram[topLeft.y][x] != '-' ||
+			diagram[botRight.y][x] != '+' &&
+			diagram[botRight.y][x] != '-' {
+			return false
+		}
 	}
-	
+	for y := topLeft.y + 1; y < botRight.y; y++ {
+		if diagram[y][topLeft.x] != '+' &&
+			diagram[y][topLeft.x] != '-' ||
+			diagram[y][botRight.x] != '+' &&
+			diagram[y][botRight.x] != '-' {
+			return false
+		}
+	}
+	return true
 }
