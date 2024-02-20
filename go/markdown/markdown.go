@@ -19,13 +19,13 @@ func Render(markdown string) string {
 	listOpened := false
 	html := ""
 	he := false
-	for pos := 0; pos < len(markdown);{
-		char := markdown[pos]
+	for i := 0; i < len(markdown);{
+		char := markdown[i]
 		if char == '#' {
 			for char == '#' {
 				headerLevel++
-				pos++
-				char = markdown[pos]
+				i++
+				char = markdown[i]
 			}
 			if headerLevel == 7 {
 				html += fmt.Sprintf("<p>%s ", strings.Repeat("#", headerLevel))
@@ -35,11 +35,11 @@ func Render(markdown string) string {
 			} else {
 				html += fmt.Sprintf("<h%d>", headerLevel)
 			}
-			pos++
+			i++
 			continue
 		}
 		he = true
-		if char == '*' && headerLevel == 0 && strings.Contains(markdown, "\n") {
+		if char == '*' && strings.Contains(markdown, "\n") {
 			if list == 0 {
 				html += "<ul>"
 			}
@@ -50,11 +50,11 @@ func Render(markdown string) string {
 			} else {
 				html += string(char) + " "
 			}
-			pos += 2
+			i += 2
 			continue
 		}
 		if char == '\n' {
-			if listOpened && strings.LastIndex(markdown, "\n") == pos && strings.LastIndex(markdown, "\n") > strings.LastIndex(markdown, "*") {
+			if listOpened && strings.LastIndex(markdown, "\n") == i && strings.LastIndex(markdown, "\n") > strings.LastIndex(markdown, "*") {
 				html += "</li></ul><p>"
 				listOpened = false
 				list = 0
@@ -67,11 +67,11 @@ func Render(markdown string) string {
 				html += fmt.Sprintf("</h%d>", headerLevel)
 				headerLevel = 0
 			}
-			pos++
+			i++
 			continue
 		}
 		html += string(char)
-		pos++
+		i++
 		//removed break
 	}
 	switch {
