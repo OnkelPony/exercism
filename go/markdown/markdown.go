@@ -9,12 +9,22 @@ import (
 
 // Render translates markdown to HTML
 func Render(markdown string) string {
-	headerLevel := 0
 	markdown = strings.Replace(markdown, "__", "<strong>", 1)
 	markdown = strings.Replace(markdown, "__", "</strong>", 1)
 	markdown = strings.Replace(markdown, "_", "<em>", 1)
 	markdown = strings.Replace(markdown, "_", "</em>", 1)
-// pos moved to for cycle
+	
+	var result string
+	lines := strings.Split(markdown, "\n")
+	for _, line := range lines {
+		result += renderLine(line)
+	}
+	return result
+}
+
+func renderLine(markdown string) string {
+	headerLevel := 0
+	// pos moved to for cycle
 	list := 0
 	listOpened := false
 	html := ""
