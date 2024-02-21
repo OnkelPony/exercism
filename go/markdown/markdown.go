@@ -13,7 +13,7 @@ func Render(markdown string) string {
 	markdown = strings.Replace(markdown, "__", "</strong>", 1)
 	markdown = strings.Replace(markdown, "_", "<em>", 1)
 	markdown = strings.Replace(markdown, "_", "</em>", 1)
-	
+
 	var result string
 	lines := strings.Split(markdown, "\n")
 	for _, line := range lines {
@@ -29,7 +29,7 @@ func renderLine(markdown string) string {
 	listOpened := false
 	html := ""
 	he := false
-	for i := 0; i < len(markdown);{
+	for i := 0; i < len(markdown); {
 		char := markdown[i]
 		if char == '#' {
 			for char == '#' {
@@ -49,7 +49,7 @@ func renderLine(markdown string) string {
 			continue
 		}
 		he = true
-		if char == '*' && strings.Contains(markdown, "\n") {
+		if char == '*' {
 			if list == 0 {
 				html += "<ul>"
 			}
@@ -63,25 +63,23 @@ func renderLine(markdown string) string {
 			i += 2
 			continue
 		}
-		if char == '\n' {
-			if listOpened && strings.LastIndex(markdown, "\n") == i && strings.LastIndex(markdown, "\n") > strings.LastIndex(markdown, "*") {
-				html += "</li></ul><p>"
-				listOpened = false
-				list = 0
-			}
-			if list > 0 && listOpened {
-				html += "</li>"
-				listOpened = false
-			}
-			if headerLevel > 0 {
-				html += fmt.Sprintf("</h%d>", headerLevel)
-				headerLevel = 0
-			}
-			i++
-			continue
+		/*
+		if listOpened && strings.LastIndex(markdown, "\n") == i && strings.LastIndex(markdown, "\n") > strings.LastIndex(markdown, "*") {
+			html += "</li></ul><p>"
+			listOpened = false
+			list = 0
 		}
-		html += string(char)
+		if list > 0 && listOpened {
+			html += "</li>"
+			listOpened = false
+		}
+		if headerLevel > 0 {
+			html += fmt.Sprintf("</h%d>", headerLevel)
+			headerLevel = 0
+		}
+		*/
 		i++
+		html += string(char)
 		//removed break
 	}
 	switch {
