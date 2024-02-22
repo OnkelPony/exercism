@@ -9,33 +9,28 @@ import (
 
 // Render translates markdown to HTML
 func Render(markdown string) string {
-	headerLevel := 0
 	shapeLetters(&markdown)
-// pos moved to for cycle
+	// pos moved to for cycle
 	list := 0
 	listOpened := false
 	html := ""
-	he := false
-	for i := 0; i < len(markdown);{
+	headerLevel := 0
+	for i := 0; i < len(markdown); {
 		char := markdown[i]
-		if char == '#' {
+		if char == '#' && i == 0{
 			for char == '#' {
 				headerLevel++
 				i++
 				char = markdown[i]
 			}
-			if headerLevel == 7 {
+			if headerLevel > 6 {
 				html += fmt.Sprintf("<p>%s ", strings.Repeat("#", headerLevel))
-			} else if he {
-				html += "# "
-				headerLevel--
 			} else {
 				html += fmt.Sprintf("<h%d>", headerLevel)
 			}
 			i++
 			continue
 		}
-		he = true
 		if char == '*' && headerLevel == 0 && strings.Contains(markdown, "\n") {
 			if list == 0 {
 				html += "<ul>"
@@ -87,7 +82,7 @@ func Render(markdown string) string {
 
 }
 
-func shapeLetters(markdown *string)  {
+func shapeLetters(markdown *string) {
 	*markdown = strings.Replace(*markdown, "__", "<strong>", 1)
 	*markdown = strings.Replace(*markdown, "__", "</strong>", 1)
 	*markdown = strings.Replace(*markdown, "_", "<em>", 1)
