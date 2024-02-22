@@ -17,21 +17,21 @@ func Render(markdown string) string {
 	headerLevel := 0
 	for i := 0; i < len(markdown); {
 		char := markdown[i]
-		if char == '#' && i == 0{
-			for char == '#' {
+		if char == '#' && i == 0 {
+			for markdown[i] == '#' {
 				headerLevel++
 				i++
-				char = markdown[i]
 			}
-			if headerLevel > 6 {
-				html += fmt.Sprintf("<p>%s ", strings.Repeat("#", headerLevel))
-			} else {
+			if headerLevel < 7 {
 				html += fmt.Sprintf("<h%d>", headerLevel)
+			} else {
+				html += fmt.Sprintf("<p>%s ", strings.Repeat("#", headerLevel))
 			}
 			i++
 			continue
 		}
-		if char == '*' && headerLevel == 0 && strings.Contains(markdown, "\n") {
+		// header level test is not necessary
+		if char == '*' && strings.Contains(markdown, "\n") {
 			if list == 0 {
 				html += "<ul>"
 			}
