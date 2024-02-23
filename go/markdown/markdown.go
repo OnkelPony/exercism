@@ -46,7 +46,8 @@ func Render(markdown string) string {
 			continue
 		}
 		if char == '\n' {
-			if listOpened && strings.LastIndex(markdown, "\n") == i && strings.LastIndex(markdown, "\n") > strings.LastIndex(markdown, "*") {
+			// simplified the test
+			if listOpened && strings.LastIndex(markdown, "\n") == i && i > strings.LastIndex(markdown, "*") {
 				html += "</li></ul><p>"
 				listOpened = false
 				list = 0
