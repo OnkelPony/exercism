@@ -11,11 +11,11 @@ import (
 func Render(markdown string) string {
 	shapeLetters(&markdown)
 	// pos moved to for cycle
-	list := 0
+	isList := false
 	listOpened := false
 	html := ""
 	headerLevel := 0
-	for i := 0; i < len(markdown); {
+	for i := 0; i < len(markdown); i++ {
 		char := markdown[i]
 		if char == '#' && i == 0 {
 			for markdown[i] == '#' {
@@ -27,22 +27,21 @@ func Render(markdown string) string {
 			} else {
 				html += fmt.Sprintf("<p>%s ", strings.Repeat("#", headerLevel))
 			}
-			i++
 			continue
 		}
 		// header level test is not necessary
 		if char == '*' && strings.Contains(markdown, "\n") {
-			if list == 0 {
+			if !strings.Contains(html, "<ul>") {
 				html += "<ul>"
 			}
-			list++
+			isList = true
 			if !listOpened {
 				html += "<li>"
 				listOpened = true
 			} else {
 				html += string(char) + " "
 			}
-			i += 2
+			i ++
 			continue
 		}
 		if char == '\n' {
@@ -50,9 +49,9 @@ func Render(markdown string) string {
 			if listOpened && strings.LastIndex(markdown, "\n") == i && i > strings.LastIndex(markdown, "*") {
 				html += "</li></ul><p>"
 				listOpened = false
-				list = 0
+				isList = false
 			}
-			if list > 0 && listOpened {
+			if isList  && listOpened {
 				html += "</li>"
 				listOpened = false
 			}
@@ -60,11 +59,9 @@ func Render(markdown string) string {
 				html += fmt.Sprintf("</h%d>", headerLevel)
 				headerLevel = 0
 			}
-			i++
 			continue
 		}
 		html += string(char)
-		i++
 		//removed break
 	}
 	switch {
@@ -73,7 +70,7 @@ func Render(markdown string) string {
 	case headerLevel > 0:
 		return html + fmt.Sprintf("</h%d>", headerLevel)
 	}
-	if list > 0 {
+	if isList  {
 		return html + "</li></ul>"
 	}
 	if strings.Contains(html, "<p>") {
