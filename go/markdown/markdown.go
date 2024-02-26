@@ -31,7 +31,7 @@ func Render(markdown string) string {
 			}
 		// header level test is not necessary
 		case char == '*' && strings.Contains(markdown, "\n"):
-			if !strings.Contains(html, "<ul>") {
+			if !isList {
 				html += "<ul>"
 			}
 			isList = true
@@ -60,7 +60,6 @@ func Render(markdown string) string {
 		default:
 			html += string(char)
 			//removed break
-
 		}
 	}
 	switch {
