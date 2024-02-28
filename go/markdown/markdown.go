@@ -9,10 +9,13 @@ import (
 
 // Render translates markdown to HTML
 func Render(markdown string) string {
+	shapeLetters(&markdown)
+
 	// pos moved to for cycle
 	isList := false
 	listOpened := false
-	html := ""
+	// string.Builder improves performance
+	var html strings.Builder
 	headerLevel := 0
 	for i := 0; i < len(markdown); i++ {
 		char := markdown[i]
@@ -24,56 +27,56 @@ func Render(markdown string) string {
 				i++
 			}
 			if headerLevel < 7 {
-				html += fmt.Sprintf("<h%d>", headerLevel)
+				html.WriteString(fmt.Sprintf("<h%d>", headerLevel))
 			} else {
-				html += fmt.Sprintf("<p>%s ", strings.Repeat("#", headerLevel))
+				html.WriteString(fmt.Sprintf("<p>%s ", strings.Repeat("#", headerLevel)))
 			}
 		// header level test is not necessary
 		case char == '*' && strings.Contains(markdown, "\n"):
 			if !isList {
-				html += "<ul>"
+				html.WriteString("<ul>")
 			}
 			isList = true
 			if !listOpened {
-				html += "<li>"
+				html.WriteString("<li>")
 				listOpened = true
 			} else {
-				html += string(char) + " "
+				html.WriteString(string(char) + " ")
 			}
 			i++
 		case char == '\n':
 			// simplified the test
 			if listOpened {
-				html += "</li>"
+				html.WriteString("</li>")
 				if strings.LastIndex(markdown, "\n") == i && i > strings.LastIndex(markdown, "*") {
-					html += "</ul><p>"
+					html.WriteString("</ul><p>")
 					isList = false
 				}
 				listOpened = false
-			}			
+			}
 			if headerLevel > 0 {
-				html += fmt.Sprintf("</h%d>", headerLevel)
+				html.WriteString(fmt.Sprintf("</h%d>", headerLevel))
 				headerLevel = 0
 			}
 		default:
-			html += string(char)
+			html.WriteByte(char)
 			//removed break
 		}
 	}
 	// shape letters later improves performance
-	shapeLetters(&html)
 	switch {
 	case headerLevel == 7:
-		return html + "</p>"
+		 html.WriteString("</p>")
 	case headerLevel > 0:
-		return html + fmt.Sprintf("</h%d>", headerLevel)
+		 html.WriteString(fmt.Sprintf("</h%d>", headerLevel))
 	case isList:
-		return html + "</li></ul>"
-	case strings.Contains(html, "<p>"):
-		return html + "</p>"
+		 html.WriteString("</li></ul>")
+	case strings.Contains(html.String(), "<p>"):
+		 html.WriteString("</p>")
 	default:
-		return "<p>" + html + "</p>"
+		return "<p>" + html.String() + "</p>"
 	}
+	return html.String()
 }
 
 func shapeLetters(html *string) {
