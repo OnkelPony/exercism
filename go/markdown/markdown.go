@@ -9,7 +9,6 @@ import (
 
 // Render translates markdown to HTML
 func Render(markdown string) string {
-	shapeLetters(&markdown)
 	// pos moved to for cycle
 	isList := false
 	listOpened := false
@@ -61,6 +60,8 @@ func Render(markdown string) string {
 			//removed break
 		}
 	}
+	// shape letters later improves performance
+	shapeLetters(&html)
 	switch {
 	case headerLevel == 7:
 		return html + "</p>"
@@ -75,9 +76,9 @@ func Render(markdown string) string {
 	}
 }
 
-func shapeLetters(markdown *string) {
-	*markdown = strings.Replace(*markdown, "__", "<strong>", 1)
-	*markdown = strings.Replace(*markdown, "__", "</strong>", 1)
-	*markdown = strings.Replace(*markdown, "_", "<em>", 1)
-	*markdown = strings.Replace(*markdown, "_", "</em>", 1)
+func shapeLetters(html *string) {
+	*html = strings.Replace(*html, "__", "<strong>", 1)
+	*html = strings.Replace(*html, "__", "</strong>", 1)
+	*html = strings.Replace(*html, "_", "<em>", 1)
+	*html = strings.Replace(*html, "_", "</em>", 1)
 }
