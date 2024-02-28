@@ -44,15 +44,14 @@ func Render(markdown string) string {
 			i++
 		case char == '\n':
 			// simplified the test
-			if listOpened && strings.LastIndex(markdown, "\n") == i && i > strings.LastIndex(markdown, "*") {
-				html += "</li></ul><p>"
-				listOpened = false
-				isList = false
-			}
-			if isList && listOpened {
+			if listOpened {
 				html += "</li>"
+				if strings.LastIndex(markdown, "\n") == i && i > strings.LastIndex(markdown, "*") {
+					html += "</ul><p>"
+					isList = false
+				}
 				listOpened = false
-			}
+			}			
 			if headerLevel > 0 {
 				html += fmt.Sprintf("</h%d>", headerLevel)
 				headerLevel = 0
