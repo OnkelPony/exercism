@@ -63,16 +63,13 @@ func Render(markdown string) string {
 			//removed break
 		}
 	}
-	// shape letters later improves performance
 	switch {
-	case headerLevel == 7:
-		 html.WriteString("</p>")
-	case headerLevel > 0:
-		 html.WriteString(fmt.Sprintf("</h%d>", headerLevel))
 	case isList:
-		 html.WriteString("</li></ul>")
+		html.WriteString("</li></ul>")
 	case strings.Contains(html.String(), "<p>"):
-		 html.WriteString("</p>")
+		html.WriteString("</p>")
+	case headerLevel > 0:
+		html.WriteString(fmt.Sprintf("</h%d>", headerLevel))
 	default:
 		return "<p>" + html.String() + "</p>"
 	}
