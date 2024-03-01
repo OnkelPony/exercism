@@ -10,22 +10,17 @@ import (
 // Render translates markdown to HTML
 func Render(markdown string) string {
 	shapeLetters(&markdown)
-
 	// pos moved to for cycle
-	isList := false
 	listOpened := false
 	// string.Builder improves performance
 	var html strings.Builder
-	headerLevel := 0
+	var headerLevel int
 	for i := 0; i < len(markdown); i++ {
 		char := markdown[i]
 		//changed from if to switch
 		switch {
 		case char == '#' && i == 0:
-			for markdown[i] == '#' {
-				headerLevel++
-				i++
-			}
+			headerLevel = countHeaderLevel(markdown, &i)
 			if headerLevel < 7 {
 				html.WriteString(fmt.Sprintf("<h%d>", headerLevel))
 			} else {
@@ -33,26 +28,14 @@ func Render(markdown string) string {
 			}
 		// header level test is not necessary
 		case char == '*' && strings.Contains(markdown, "\n"):
-			if !isList {
-				html.WriteString("<ul>")
-			}
-			isList = true
-			if !listOpened {
-				html.WriteString("<li>")
-				listOpened = true
-			} else {
-				html.WriteString(string(char) + " ")
-			}
+			// move to separate function
+			handleLists(&html, &listOpened, char)
 			i++
 		case char == '\n':
 			// simplified the test
 			if listOpened {
-				html.WriteString("</li>")
-				if strings.LastIndex(markdown, "\n") == i && i > strings.LastIndex(markdown, "*") {
-					html.WriteString("</ul><p>")
-					isList = false
-				}
-				listOpened = false
+				// move to separate function
+				listOpened = handleListItems(&html, markdown, i)
 			}
 			if headerLevel > 0 {
 				html.WriteString(fmt.Sprintf("</h%d>", headerLevel))
@@ -64,7 +47,7 @@ func Render(markdown string) string {
 		}
 	}
 	switch {
-	case isList:
+	case strings.Contains(html.String(), "<ul>") && !strings.Contains(html.String(), "</ul>"):
 		html.WriteString("</li></ul>")
 	case strings.Contains(html.String(), "<p>"):
 		html.WriteString("</p>")
@@ -74,6 +57,35 @@ func Render(markdown string) string {
 		return "<p>" + html.String() + "</p>"
 	}
 	return html.String()
+}
+
+func handleListItems(html *strings.Builder, markdown string, i int)bool {
+	html.WriteString("</li>")
+	if strings.LastIndex(markdown, "\n") == i && i > strings.LastIndex(markdown, "*") {
+		html.WriteString("</ul><p>")
+	}
+	return false
+}
+
+func handleLists(html *strings.Builder, listOpened *bool, char byte)  {
+	if !strings.Contains(html.String(), "<ul>") {
+		html.WriteString("<ul>")
+	}
+	if !*listOpened {
+		html.WriteString("<li>")
+		*listOpened = true
+	} else {
+		html.WriteString(string(char) + " ")
+	}
+}
+
+func countHeaderLevel(markdown string, i *int) int {
+	headerLevel := 0
+	for markdown[*i] == '#' {
+		headerLevel++
+		*i++
+	}
+	return headerLevel
 }
 
 func shapeLetters(html *string) {
