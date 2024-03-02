@@ -9,93 +9,92 @@ import (
 
 // Render translates markdown to HTML
 func Render(markdown string) string {
-	markdown = strings.Replace(markdown, "__", "<strong>", 1)
-	markdown = strings.Replace(markdown, "__", "</strong>", 1)
-	markdown = strings.Replace(markdown, "_", "<em>", 1)
-	markdown = strings.Replace(markdown, "_", "</em>", 1)
-	
-	var result string
-	lines := strings.Split(markdown, "\n")
-	for _, line := range lines {
-		result += renderLine(line)
-	}
-	return result
-}
-
-func renderLine(markdown string) string {
-	headerLevel := 0
+	shapeLetters(&markdown)
 	// pos moved to for cycle
-	list := 0
 	listOpened := false
-	html := ""
-	he := false
-	for i := 0; i < len(markdown);{
+	// string.Builder improves performance
+	var html strings.Builder
+	var headerLevel int
+	for i := 0; i < len(markdown); i++ {
 		char := markdown[i]
-		if char == '#' {
-			for char == '#' {
-				headerLevel++
-				i++
-				char = markdown[i]
-			}
-			if headerLevel == 7 {
-				html += fmt.Sprintf("<p>%s ", strings.Repeat("#", headerLevel))
-			} else if he {
-				html += "# "
-				headerLevel--
+		//changed from if to switch
+		switch {
+		case char == '#' && i == 0:
+			headerLevel = countHeaderLevel(markdown, &i)
+			if headerLevel < 7 {
+				html.WriteString(fmt.Sprintf("<h%d>", headerLevel))
 			} else {
-				html += fmt.Sprintf("<h%d>", headerLevel)
+				html.WriteString(fmt.Sprintf("<p>%s ", strings.Repeat("#", headerLevel)))
 			}
+		// header level test is not necessary
+		case char == '*' && strings.Contains(markdown, "\n"):
+			// move to separate function
+			handleLists(&html, &listOpened, char)
 			i++
-			continue
-		}
-		he = true
-		if char == '*' && strings.Contains(markdown, "\n") {
-			if list == 0 {
-				html += "<ul>"
-			}
-			list++
-			if !listOpened {
-				html += "<li>"
-				listOpened = true
-			} else {
-				html += string(char) + " "
-			}
-			i += 2
-			continue
-		}
-		if char == '\n' {
-			if listOpened && strings.LastIndex(markdown, "\n") == i && strings.LastIndex(markdown, "\n") > strings.LastIndex(markdown, "*") {
-				html += "</li></ul><p>"
-				listOpened = false
-				list = 0
-			}
-			if list > 0 && listOpened {
-				html += "</li>"
-				listOpened = false
+		case char == '\n':
+			// simplified the test
+			if listOpened {
+				// move to separate function
+				listOpened = handleListItems(&html, markdown, i)
 			}
 			if headerLevel > 0 {
-				html += fmt.Sprintf("</h%d>", headerLevel)
+				html.WriteString(fmt.Sprintf("</h%d>", headerLevel))
 				headerLevel = 0
 			}
-			i++
-			continue
+		default:
+			html.WriteByte(char)
+			//removed break
 		}
-		html += string(char)
-		i++
-		//removed break
 	}
-	switch {
-	case headerLevel == 7:
-		return html + "</p>"
-	case headerLevel > 0:
-		return html + fmt.Sprintf("</h%d>", headerLevel)
-	}
-	if list > 0 {
-		return html + "</li></ul>"
-	}
-	if strings.Contains(html, "<p>") {
-		return html + "</p>"
-	}
-	return "<p>" + html + "</p>"
+	return closeTags(&html, headerLevel)
+}
 
+func closeTags(html *strings.Builder, headerLevel int) string {
+	switch {
+	case strings.Contains(html.String(), "<ul>") && !strings.Contains(html.String(), "</ul>"):
+		html.WriteString("</li></ul>")
+	case strings.Contains(html.String(), "<p>"):
+		html.WriteString("</p>")
+	case headerLevel > 0:
+		html.WriteString(fmt.Sprintf("</h%d>", headerLevel))
+	default:
+		return "<p>" + html.String() + "</p>"
+	}
+	return html.String()
+}
+
+func handleListItems(html *strings.Builder, markdown string, i int) bool {
+	html.WriteString("</li>")
+	if strings.LastIndex(markdown, "\n") == i && i > strings.LastIndex(markdown, "*") {
+		html.WriteString("</ul><p>")
+	}
+	return false
+}
+
+func handleLists(html *strings.Builder, listOpened *bool, char byte) {
+	if !strings.Contains(html.String(), "<ul>") {
+		html.WriteString("<ul>")
+	}
+	if !*listOpened {
+		html.WriteString("<li>")
+		*listOpened = true
+	} else {
+		html.WriteString(string(char) + " ")
+	}
+}
+
+func countHeaderLevel(markdown string, i *int) int {
+	headerLevel := 0
+	for markdown[*i] == '#' {
+		headerLevel++
+		*i++
+	}
+	return headerLevel
+}
+
+func shapeLetters(html *string) {
+	*html = strings.Replace(*html, "__", "<strong>", 1)
+	*html = strings.Replace(*html, "__", "</strong>", 1)
+	*html = strings.Replace(*html, "_", "<em>", 1)
+	*html = strings.Replace(*html, "_", "</em>", 1)
 }
