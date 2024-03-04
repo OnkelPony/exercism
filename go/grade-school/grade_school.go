@@ -1,47 +1,59 @@
+// Package school implements graduating school students.
 package school
 
-import "sort"
+import (
+	"sort"
+)
 
-// Define the Grade and School types here.
+// Grade is the base grade struct.
 type Grade struct {
 	level    int
-	students sort.StringSlice
+	students []string
 }
 
+// School is the base school type.
 type School struct {
-	grades   []Grade
-	students map[int][]string
+	grades map[int][]string
 }
 
-// New returns a new instance of a School.
+// New returns new school.
 func New() *School {
-    return &School{
-        grades:   make([]Grade, 0),
-        students: make(map[int][]string),
-    }
+	return &School{
+		grades: make(map[int][]string, 0),
+	}
 }
 
-// Add adds a student to the appropriate grade level.
-func (s *School) Add(student string, grade int) {
-    s.students[grade] = append(s.students[grade], student)
+// Add adds student into grade.
+func (s *School) Add(name string, level int) {
+	s.grades[level] = append(s.grades[level], name)
 }
 
-// Grade returns the students in the specified grade level.
+// Grade returns students for given grade.
 func (s *School) Grade(level int) []string {
-    return s.students[level]
+	return s.grades[level]
 }
 
-// Enrollment returns the list of students and their grades in the school.
-// The grades are sorted ascending and so are students in each grade.
+// Enrollment enroll all students.
 func (s *School) Enrollment() []Grade {
-	for grade, students := range s.students {
-		s.grades = append(s.grades, Grade{grade, students})
+	result := make([]Grade, len(s.grades))
+
+	keys := make([]int, len(s.grades))
+	i := 0
+	for k := range s.grades {
+		keys[i] = k
+		i++
 	}
-	for _, grade := range s.grades {
-		grade.students.Sort()
+
+	sort.Ints(keys)
+
+	for i, k := range keys {
+		v := s.grades[k]
+		sort.Strings(v)
+		result[i] = Grade{
+			level:    k,
+			students: v,
+		}
 	}
-	sort.Slice(s.grades, func(i, j int) bool {
-		return s.grades[i].level < s.grades[j].level
-	})
-	return s.grades
+
+	return result
 }
