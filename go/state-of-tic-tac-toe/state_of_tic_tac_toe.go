@@ -22,3 +22,15 @@ func StateOfTicTacToe(board []string) (State, error) {
 		return Ongoing, nil
 	}
 }
+
+func iswin(board []string) bool {
+	return true
+}
+
+func isValid(board []string) bool {
+	return true
+}
+
+func isFull(board []string) bool {
+	return true
+}
