@@ -46,6 +46,14 @@ func countElement(board []string, r rune) int {
 }
 
 func iswin(board []string) bool {
+	return threeSymbols(board, 'X') != threeSymbols(board, 'O')
+}
+
+func threeSymbols(board []string, r rune) bool {
+	var inRow, inCol, inToR, inBoR int
+	for i := range board {
+		for j := range board[i] {
+			if board[i][j] == r {inRow++}
 	return true
 }
 
