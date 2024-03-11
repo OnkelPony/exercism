@@ -49,14 +49,31 @@ func iswin(board []string) bool {
 	return threeSymbols(board, 'X') != threeSymbols(board, 'O')
 }
 
-func threeSymbols(board []string, r rune) bool {
-	var inRow, inCol, inToR, inBoR int
+func threeSymbols(board []string, r byte) bool {
+	var inFalling, inRising int
 	for i := range board {
+		var inRow, inCol int
 		for j := range board[i] {
-			if board[i][j] == r {inRow++}
-	return true
+			if board[i][j] == r {
+				inRow++
+				if i == j {
+					inFalling++
+				}
+				}
+			if board[j][i] == r {
+				inCol++
+				if i + j == len(board)-1 {
+					inRising++
+				}
+			}
+		}
+		if inRow == len(board) || inCol == len(board) {
+			return true
+		}
+	}
+	return inRising == len(board) || inFalling == len(board)
 }
 
 func isFull(board []string) bool {
-	return true
+	return countElement(board, 'X') + countElement(board, 'O') == len(board) * len(board[0])
 }
