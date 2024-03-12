@@ -27,7 +27,8 @@ func StateOfTicTacToe(board []string) (State, error) {
 
 func isValid(board []string) bool {
 	if countElement(board, 'O') > countElement(board, 'X') ||
-		countElement(board, 'O')+1 < countElement(board, 'X') {
+		countElement(board, 'O')+1 < countElement(board, 'X')||
+		threeSymbols(board, 'X') && threeSymbols(board, 'O'){
 		return false
 	}
 	return true
