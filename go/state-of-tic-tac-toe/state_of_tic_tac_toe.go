@@ -27,8 +27,8 @@ func StateOfTicTacToe(board []string) (State, error) {
 
 func isValid(board []string) bool {
 	if countElement(board, 'O') > countElement(board, 'X') ||
-		countElement(board, 'O')+1 < countElement(board, 'X')||
-		threeSymbols(board, 'X') && threeSymbols(board, 'O'){
+		countElement(board, 'O')+1 < countElement(board, 'X') ||
+		threeSymbols(board, 'X') && threeSymbols(board, 'O') {
 		return false
 	}
 	return true
@@ -47,7 +47,7 @@ func countElement(board []string, r rune) int {
 }
 
 func iswin(board []string) bool {
-	return threeSymbols(board, 'X') != threeSymbols(board, 'O')
+	return threeSymbols(board, 'X') || threeSymbols(board, 'O')
 }
 
 func threeSymbols(board []string, r byte) bool {
@@ -60,10 +60,10 @@ func threeSymbols(board []string, r byte) bool {
 				if i == j {
 					inFalling++
 				}
-				}
+			}
 			if board[j][i] == r {
 				inCol++
-				if i + j == len(board)-1 {
+				if i+j == len(board)-1 {
 					inRising++
 				}
 			}
@@ -76,5 +76,5 @@ func threeSymbols(board []string, r byte) bool {
 }
 
 func isFull(board []string) bool {
-	return countElement(board, 'X') + countElement(board, 'O') == len(board) * len(board[0])
+	return countElement(board, 'X')+countElement(board, 'O') == len(board)*len(board[0])
 }
