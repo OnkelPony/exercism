@@ -1,5 +1,7 @@
 package dominoes
 
+import "errors"
+
 // Define the Domino type here.
 type Domino [2]int
 
@@ -24,8 +26,17 @@ func MakeChain(input []Domino) ([]Domino, bool) {
 	return result, true
 }
 
-func pickNext(unusedStones map[int]Domino, domino Domino) (Domino, error) {
-	return domino, nil
+func pickNext(unusedStones map[int]Domino, last Domino) (Domino, error) {
+	for k, v := range unusedStones {
+		if last[1] == v[0] {
+			delete(unusedStones, k)
+			return v, nil
+		} else if last[1] == v[1] {
+			delete(unusedStones, k)
+			return Domino{v[1], v[0]}, nil
+		}
+	}
+	return Domino{}, errors.New("no matching Domino")
 }
 
 func makeUnusedStones(input []Domino) map[int]Domino {
