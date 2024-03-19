@@ -14,7 +14,6 @@ func MakeChain(input []Domino) ([]Domino, bool) {
 	}
 	result := make([]Domino, len(input))
 	result[0] = input[0]
-	//Stone con't be key of the map, stones can be non-unique
 	unusedStones := makeUnusedStones(input)
 	for i := 1; i < len(input); i++ {
 		nextStone, err := pickNext(unusedStones, result[i-1])
@@ -27,6 +26,7 @@ func MakeChain(input []Domino) ([]Domino, bool) {
 }
 
 func pickNext(unusedStones map[int]Domino, last Domino) (Domino, error) {
+	//TODO: Implement "Candidates" for next stone to try more stones matching
 	for k, v := range unusedStones {
 		if last[1] == v[0] {
 			delete(unusedStones, k)
