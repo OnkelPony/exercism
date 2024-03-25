@@ -2,28 +2,41 @@ package main
 
 import (
 	"fmt"
+	"os"
 )
 
 func main() {
-	fmt.Println("Print signs")
-	znamenka([]int{1, 2, 3}, 0)
+	vypisObsahAdresare("..", "	")
 }
 
-func znamenka(cisla []int, index int) {
-	if index == len(cisla) {
-		sum := 0
-		for i := 0; i < len(cisla); i++ {
-			sum += cisla[i]
+func vypisObsahAdresare(cesta, odsazeni string) {
+	soubor, err := os.Open(cesta)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	defer soubor.Close()
+
+	stat, err := soubor.Stat()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	if stat.IsDir() {
+		podadresare, err := os.ReadDir(cesta)
+		if err != nil {
+			fmt.Println(err)
+			return
 		}
-		if sum == 0 {
-			for i := 0; i < len(cisla); i++ {
-				fmt.Printf("%d ", cisla[i])
+
+		for _, podadresar := range podadresare {
+			fmt.Println(odsazeni, podadresar.Name())
+			if podadresar.IsDir() {
+				vypisObsahAdresare(cesta+"/"+podadresar.Name(), odsazeni+"  ")
 			}
-			fmt.Println()
 		}
 	} else {
-		znamenka(cisla, index+1)
-		cisla[index] *= -1
-		znamenka(cisla, index+1)
+		fmt.Println(odsazeni, soubor.Name())
 	}
 }
