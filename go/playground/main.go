@@ -5,20 +5,18 @@ import (
 )
 
 func main() {
-	fmt.Println("Print bins")
-	binCisla([]int{0, 0, 0}, 0)
+	fmt.Println("Print substrings")
+	podretezce("abc", "", 0)
 }
 
-func binCisla(pole []int, index int) {
-	if index == len(pole) {
-		for i := 0; i < len(pole); i++ {
-			fmt.Print(pole[i])
-		}
-		fmt.Println()
+func podretezce(retezec, vysledek string, index int) {
+	if index == len(retezec) {
+		fmt.Println(vysledek)
 	} else {
-		pole[index] = 0
-		binCisla(pole, index+1)
-		pole[index] = 1
-		binCisla(pole, index+1)
+		podretezce(retezec, vysledek, index+1)
+
+		// pravý podstrom - znak použijeme
+		vysledek += string(retezec[index])
+		podretezce(retezec, vysledek, index+1)
 	}
 }
