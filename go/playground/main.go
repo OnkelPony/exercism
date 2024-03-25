@@ -5,18 +5,25 @@ import (
 )
 
 func main() {
-	fmt.Println("Print substrings")
-	podretezce("abc", "", 0)
+	fmt.Println("Print signs")
+	znamenka([]int{1, 2, 3}, 0)
 }
 
-func podretezce(retezec, vysledek string, index int) {
-	if index == len(retezec) {
-		fmt.Println(vysledek)
+func znamenka(cisla []int, index int) {
+	if index == len(cisla) {
+		sum := 0
+		for i := 0; i < len(cisla); i++ {
+			sum += cisla[i]
+		}
+		if sum == 0 {
+			for i := 0; i < len(cisla); i++ {
+				fmt.Printf("%d ", cisla[i])
+			}
+			fmt.Println()
+		}
 	} else {
-		podretezce(retezec, vysledek, index+1)
-
-		// pravý podstrom - znak použijeme
-		vysledek += string(retezec[index])
-		podretezce(retezec, vysledek, index+1)
+		znamenka(cisla, index+1)
+		cisla[index] *= -1
+		znamenka(cisla, index+1)
 	}
 }
