@@ -11,10 +11,7 @@ func main() {
 
 func binCisla(pole []int, index int) {
 	if index == len(pole) {
-		for i := 0; i < len(pole); i++ {
-			fmt.Print(pole[i])
-		}
-		fmt.Println()
+		fmt.Println(pole)
 	} else {
 		pole[index] = 0
 		binCisla(pole, index+1)
